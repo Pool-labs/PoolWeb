@@ -10,9 +10,12 @@ import ScrollToTop from "@/components/scroll-to-top"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
+  title: "Pool - Group Funds Made Simple",
   description:
     "Split payments for group activities effortlessly. No more IOUs, receipts, or complicated calculations. Just deposit, tap, and enjoy!",
-  generator: "v0.app"
+  icons: {
+    icon: "/images/pool-logo-new.png"
+  }
 }
 
 export default function RootLayout({
