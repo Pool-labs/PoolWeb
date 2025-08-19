@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   description:
     "Split payments for group activities effortlessly. No more IOUs, receipts, or complicated calculations. Just deposit, tap, and enjoy!",
     generator: 'v0.app'
+    icons: {
+    icon: "/images/pool-logo-new.png", // <- tab logo
+  },
 }
 
 export default function RootLayout({
