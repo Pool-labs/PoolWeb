@@ -20,7 +20,7 @@ export default function Header() {
               alt="POOL Logo"
               width={50}
               height={50}
-              className="animate-bounce-slow"
+              className=""
             />
             <span className="text-3xl font-bold font-doodle bg-gradient-to-r from-red-600 via-orange-600 via-yellow-600 via-green-600 via-blue-600 to-purple-600 bg-[length:300%_100%] bg-clip-text text-transparent animate-gradient-x">
               POOL

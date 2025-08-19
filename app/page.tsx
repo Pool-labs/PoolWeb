@@ -8,11 +8,11 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-20 text-center relative">
         <div className="max-w-4xl mx-auto relative z-10">
-          <div className="animate-float mb-8">
+          <div className="mb-8">
             <Image src="/images/pool-logo-new.png" alt="POOL Logo" width={200} height={200} className="mx-auto" />
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-bold text-pool-navy mb-6 font-doodle animate-wiggle">
+          <h1 className="text-6xl md:text-8xl font-bold text-pool-navy mb-6 font-doodle">
             Pool. Tap. Done.
           </h1>
 
