@@ -12,10 +12,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   description:
     "Split payments for group activities effortlessly. No more IOUs, receipts, or complicated calculations. Just deposit, tap, and enjoy!",
-  generator: "v0.app",
-  icons: {
-    icon: "/images/pool-logo-new.png", // <- tab logo
-  },
+  generator: "v0.app"
 }
 
 export default function RootLayout({
