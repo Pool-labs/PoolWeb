@@ -1,35 +1,40 @@
 "use client"
 
 import { useEffect } from 'react'
-import { setMobileViewportHeight, addTouchClass, debounce } from '@/lib/mobile-utils'
 
 export default function MobileInit() {
   useEffect(() => {
-    // Set initial viewport height
-    setMobileViewportHeight()
+    // Set viewport height for all mobile devices consistently
+    const setViewportHeight = () => {
+      const vh = window.innerHeight * 0.01
+      document.documentElement.style.setProperty('--vh', `${vh}px`)
+    }
     
-    // Add touch class
-    addTouchClass()
+    // Initial set
+    setViewportHeight()
     
-    // Handle viewport height changes
-    const handleResize = debounce(() => {
-      setMobileViewportHeight()
-    }, 100)
+    // Update on resize for all devices
+    let resizeTimer: NodeJS.Timeout
+    const handleResize = () => {
+      clearTimeout(resizeTimer)
+      resizeTimer = setTimeout(setViewportHeight, 100)
+    }
     
     window.addEventListener('resize', handleResize)
-    window.addEventListener('orientationchange', handleResize)
     
-    // Prevent pinch zoom on iOS
-    document.addEventListener('gesturestart', (e) => {
-      e.preventDefault()
-    })
+    // Add mobile class for styling
+    if (window.innerWidth <= 768) {
+      document.documentElement.classList.add('is-mobile')
+    }
     
-    // Optimize scrolling
-    document.addEventListener('touchmove', () => {}, { passive: true })
+    // Consistent touch handling across all devices
+    document.addEventListener('touchstart', () => {
+      document.documentElement.classList.add('touch-device')
+    }, { once: true, passive: true })
     
     return () => {
       window.removeEventListener('resize', handleResize)
-      window.removeEventListener('orientationchange', handleResize)
+      clearTimeout(resizeTimer)
     }
   }, [])
   

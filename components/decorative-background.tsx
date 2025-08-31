@@ -19,44 +19,20 @@ export default function DecorativeBackground() {
 
   if (!mounted) return null
 
-  // Reduced number of circles and simplified animations for mobile
+  // Simplified background for ALL mobile devices - no animations
   if (isMobile) {
     return (
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        {/* Mobile-optimized background with fewer, smaller circles */}
+        {/* Static gradient background for consistent performance */}
         <div
-          className="decorative-circle absolute w-[300px] h-[300px] rounded-full mobile-float"
+          className="absolute inset-0"
           style={{
-            background: "radial-gradient(circle, #FF69B4 0%, transparent 70%)",
-            left: "-20%",
-            top: "-10%",
-          }}
-        />
-        <div
-          className="decorative-circle absolute w-[250px] h-[250px] rounded-full mobile-float"
-          style={{
-            background: "radial-gradient(circle, #4FC3F7 0%, transparent 70%)",
-            right: "-20%",
-            top: "20%",
-            animationDelay: "2s",
-          }}
-        />
-        <div
-          className="decorative-circle absolute w-[280px] h-[280px] rounded-full mobile-float"
-          style={{
-            background: "radial-gradient(circle, #FFD700 0%, transparent 70%)",
-            left: "10%",
-            bottom: "-15%",
-            animationDelay: "4s",
-          }}
-        />
-        <div
-          className="decorative-circle absolute w-[220px] h-[220px] rounded-full mobile-float"
-          style={{
-            background: "radial-gradient(circle, #FF8C00 0%, transparent 70%)",
-            right: "-10%",
-            bottom: "10%",
-            animationDelay: "3s",
+            background: `
+              radial-gradient(circle at 20% 20%, rgba(255, 105, 180, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 30%, rgba(79, 195, 247, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 30% 70%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(255, 140, 0, 0.15) 0%, transparent 50%)
+            `,
           }}
         />
       </div>
