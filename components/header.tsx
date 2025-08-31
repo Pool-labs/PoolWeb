@@ -22,7 +22,7 @@ export default function Header() {
               height={40}
               className="sm:w-[50px] sm:h-[50px]"
             />
-            <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-red-600 via-orange-600 via-yellow-600 via-green-600 via-blue-600 to-purple-600 bg-[length:300%_100%] bg-clip-text text-transparent animate-gradient-x">
+            <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-red-600 via-orange-600 via-yellow-600 via-green-600 via-blue-600 to-purple-600 bg-[length:300%_100%] bg-clip-text text-transparent">
               POOL
             </span>
           </Link>

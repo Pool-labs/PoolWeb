@@ -34,8 +34,8 @@ export default function HomePage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-8 sm:mb-12 md:mb-16 text-pool-navy flex w-full items-baseline justify-center gap-1 sm:gap-2 tracking-tight">
-            <span className="bg-gradient-to-r from-red-800 via-yellow-700 to-blue-800 bg-[length:200%_100%] bg-clip-text text-transparent animate-gradient-x leading-none">WTF</span>
-            <span className="text-[10px] sm:text-sm text-gray-600 relative -top-1 sm:top-0 leading-none">rick</span>
+            <span className="bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent whitespace-nowrap">WTF</span>
+            <span className="text-[10px] sm:text-sm text-gray-600 relative sm:top-0 leading-none">rick</span>
             <span className="text-pool-navy leading-none">Is Pool?!</span>
           </h2>
 
