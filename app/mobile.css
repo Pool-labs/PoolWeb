@@ -268,11 +268,6 @@
 
 /* Font loading optimization */
 @media (max-width: 768px) {
-  /* Fallback for Comic Sans MS on mobile */
-  .font-doodle {
-    font-family: "Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive, sans-serif;
-    font-display: swap;
-  }
 }
 
 /* Smooth scrolling for mobile */

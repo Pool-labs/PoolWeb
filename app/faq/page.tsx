@@ -5,7 +5,7 @@ export default function FAQPage() {
     <div className="min-h-screen py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-bold text-center mb-8 font-doodle text-pool-navy">
+          <h1 className="text-5xl md:text-6xl font-bold text-center mb-8 text-pool-navy">
             <span className="bg-gradient-to-r from-red-800 via-orange-800 via-yellow-700 via-green-800 via-blue-800 to-purple-800 bg-[length:200%_100%] bg-clip-text text-transparent animate-gradient-x">
               WTF
             </span>
@@ -13,7 +13,7 @@ export default function FAQPage() {
             <span className="text-black"> Is Pool?!</span>
           </h1>
 
-          <p className="text-xl text-pool-navy text-center mb-12 font-doodle">
+          <p className="text-xl text-pool-navy text-center mb-12">
             All your questions answered in one place!
           </p>
 

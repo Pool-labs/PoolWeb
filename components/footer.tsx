@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="text-center">
           <div className="flex items-center justify-center space-x-3 mb-6">
             <Image src="/images/pool-logo-new.png" alt="POOL Logo" width={50} height={50} />
-            <span className="text-4xl font-bold font-doodle">POOL</span>
+            <span className="text-4xl font-bold">POOL</span>
           </div>
           <p className="text-pool-blue text-xl mb-6 max-w-2xl mx-auto">
             {"Payments between friends as simple as they should be. No more IOUs, just simple group spending."}

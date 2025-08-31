@@ -50,18 +50,18 @@ export default function ContactPage() {
     <div className="min-h-screen py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl font-bold text-pool-navy mb-8 text-center font-doodle text-shadow">
+          <h1 className="text-5xl font-bold text-pool-navy mb-8 text-center text-shadow">
             {"Contact Us!"}
           </h1>
 
-          <p className="text-xl text-pool-navy text-center mb-12 font-doodle text-shadow">
+          <p className="text-xl text-pool-navy text-center mb-12 text-shadow">
             {"We'd love to hear from you! Drop us a message and we'll splash back soon!"}
           </p>
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Contact Form */}
             <div className="bg-white/20 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/30">
-              <h2 className="text-3xl font-bold text-pool-navy mb-6 font-doodle flex items-center gap-2 text-shadow">
+              <h2 className="text-3xl font-bold text-pool-navy mb-6 flex items-center gap-2 text-shadow">
                 <MessageCircle className="text-pool-pink" />
                 {"Send us a Message!"}
               </h2>
@@ -140,7 +140,7 @@ export default function ContactPage() {
             {/* Contact Info */}
             <div className="space-y-6">
               <div className="bg-gradient-to-br from-pool-green to-pool-blue rounded-3xl p-8 text-white shadow-xl">
-                <h3 className="text-2xl font-bold mb-4 font-doodle text-shadow">{"Quick Questions?"}</h3>
+                <h3 className="text-2xl font-bold mb-4 text-shadow">{"Quick Questions?"}</h3>
                 <p className="text-lg mb-4 text-shadow">
                   {
                     "Check out our FAQ section or reach out directly. We're always happy to help make your POOL experience amazing!"

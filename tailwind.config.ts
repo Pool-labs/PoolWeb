@@ -73,7 +73,6 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
       fontFamily: {
-        doodle: ["Comic Sans MS", "cursive", "sans-serif"],
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",

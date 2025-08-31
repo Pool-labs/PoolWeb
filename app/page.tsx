@@ -12,11 +12,11 @@ export default function HomePage() {
             <Image src="/images/pool-logo-new.png" alt="POOL Logo" width={200} height={200} className="mx-auto" />
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-pool-navy mb-6 font-doodle">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-pool-navy mb-6">
             Pool. Tap. Done.
           </h1>
 
-          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-pool-navy mb-8 font-doodle tracking-wide">Group Funds Made Simple</p>
+          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-pool-navy mb-8 tracking-wide">Group Funds Made Simple</p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
@@ -33,7 +33,7 @@ export default function HomePage() {
       {/* Features Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-8 sm:mb-12 md:mb-16 font-doodle text-pool-navy relative">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-8 sm:mb-12 md:mb-16 text-pool-navy relative">
             <span className="bg-gradient-to-r from-red-800 via-yellow-700 to-blue-800 bg-[length:200%_100%] bg-clip-text text-transparent sm:animate-gradient-x">
               WTF
             </span>
@@ -46,7 +46,7 @@ export default function HomePage() {
               <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
                 <Zap size={40} className="text-pool-yellow" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4 font-doodle">Simple Splitting</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">Simple Splitting</h3>
               <p className="text-white text-lg">
                 {
                   "Easily split payments for daily lunches, group trips, or any activity with friends. No more complicated calculations!"
@@ -58,7 +58,7 @@ export default function HomePage() {
               <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
                 <Users size={40} className="text-pool-blue" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4 font-doodle">Virtual Card Access</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">Virtual Card Access</h3>
               <p className="text-white text-lg">
                 {"Everyone gets access to a virtual card for tap-to-pay. Group activities made simple!"}
               </p>
@@ -68,7 +68,7 @@ export default function HomePage() {
               <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
                 <Star size={40} className="text-pool-pink" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4 font-doodle">No More IOUs</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">No More IOUs</h3>
               <p className="text-white text-lg">
                 {"No more waiting for friends to pay you back or keeping track of receipts. Deposit once and enjoy!"}
               </p>
@@ -80,7 +80,7 @@ export default function HomePage() {
       {/* How It Works Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-pool-navy mb-8 sm:mb-12 md:mb-16 font-doodle">{"How It Works"}</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-pool-navy mb-8 sm:mb-12 md:mb-16">{"How It Works"}</h2>
 
           <div className="max-w-4xl mx-auto">
             <div className="bg-white/20 backdrop-blur-sm rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl border border-white/30">
@@ -89,7 +89,7 @@ export default function HomePage() {
                   <div className="bg-gradient-to-br from-pool-blue to-pool-purple rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                     <Plus size={40} className="text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-pool-navy mb-4 font-doodle">Create Your Pool</h3>
+                  <h3 className="text-2xl font-bold text-pool-navy mb-4">Create Your Pool</h3>
                   <p className="text-pool-navy text-lg">
                     {"Each friend deposits an equal amount into your shared pool"}
                   </p>
@@ -99,7 +99,7 @@ export default function HomePage() {
                   <div className="bg-gradient-to-br from-pool-pink to-pool-purple rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                     <CreditCard size={40} className="text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-pool-navy mb-4 font-doodle">Get Virtual Cards</h3>
+                  <h3 className="text-2xl font-bold text-pool-navy mb-4">Get Virtual Cards</h3>
                   <p className="text-pool-navy text-lg">
                     {"Everyone or select members get access to a virtual card for payments"}
                   </p>
@@ -109,7 +109,7 @@ export default function HomePage() {
                   <div className="bg-gradient-to-br from-pool-green to-coin-gold rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                     <Smartphone size={40} className="text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-pool-navy mb-4 font-doodle">Tap & Pay</h3>
+                  <h3 className="text-2xl font-bold text-pool-navy mb-4">Tap & Pay</h3>
                   <p className="text-pool-navy text-lg">
                     {"Pay for group activities with simple tap-to-pay. That's it!"}
                   </p>
@@ -124,7 +124,7 @@ export default function HomePage() {
       <section className="py-20">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto bg-white/20 backdrop-blur-sm rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl border border-white/30">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-pool-navy mb-4 sm:mb-6 font-doodle">{"Ready to Jump In?"}</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-pool-navy mb-4 sm:mb-6">{"Ready to Jump In?"}</h2>
             <p className="text-xl text-pool-navy mb-8">
               {"Stop worrying about receipts, notes, and calculations. Start enjoying your time with friends!"}
             </p>
