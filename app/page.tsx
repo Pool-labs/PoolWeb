@@ -12,16 +12,16 @@ export default function HomePage() {
             <Image src="/images/pool-logo-new.png" alt="POOL Logo" width={200} height={200} className="mx-auto" />
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-bold text-pool-navy mb-6 font-doodle">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-pool-navy mb-6 font-doodle">
             Pool. Tap. Done.
           </h1>
 
-          <p className="text-2xl md:text-4xl text-pool-navy mb-8 font-doodle tracking-wide">Group Funds Made Simple</p>
+          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-pool-navy mb-8 font-doodle tracking-wide">Group Funds Made Simple</p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
               href="/download"
-              className="bg-gradient-to-r from-pool-pink via-pool-purple to-pool-blue hover:from-pool-blue hover:to-pool-pink text-white font-bold py-4 px-8 rounded-full text-xl transform hover:scale-110 transition-all shadow-lg hover:shadow-xl flex items-center gap-2"
+              className="bg-gradient-to-r from-pool-pink via-pool-purple to-pool-blue hover:from-pool-blue hover:to-pool-pink text-white font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-full text-lg sm:text-xl transform hover:scale-105 active:scale-95 transition-all shadow-lg hover:shadow-xl flex items-center gap-2"
             >
               <Download size={24} />
               Download Now!
@@ -33,16 +33,16 @@ export default function HomePage() {
       {/* Features Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-5xl md:text-6xl font-bold text-center mb-16 font-doodle text-pool-navy relative">
-            <span className="bg-gradient-to-r from-red-800 via-orange-800 via-yellow-700 via-green-800 via-blue-800 to-purple-800 bg-[length:200%_100%] bg-clip-text text-transparent animate-gradient-x">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-8 sm:mb-12 md:mb-16 font-doodle text-pool-navy relative">
+            <span className="bg-gradient-to-r from-red-800 via-yellow-700 to-blue-800 bg-[length:200%_100%] bg-clip-text text-transparent sm:animate-gradient-x">
               WTF
             </span>
-            <span className="text-sm text-gray-600 -top-4">rick</span>
-            <span className="text-black"> Is Pool?!</span>
+            <span className="text-xs sm:text-sm text-gray-600 -top-4">rick</span>
+            <span className="text-pool-navy"> Is Pool?!</span>
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="text-center p-8 bg-gradient-to-br from-pool-blue via-splash-blue to-pool-navy rounded-3xl shadow-xl transform hover:scale-105 transition-all">
+            <div className="text-center p-6 sm:p-8 bg-gradient-to-br from-pool-blue via-splash-blue to-pool-navy rounded-3xl shadow-xl transform hover:scale-105 active:scale-98 transition-all">
               <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
                 <Zap size={40} className="text-pool-yellow" />
               </div>
@@ -54,7 +54,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="text-center p-8 bg-gradient-to-br from-pool-pink via-pool-purple to-pool-orange rounded-3xl shadow-xl transform hover:scale-105 transition-all">
+            <div className="text-center p-6 sm:p-8 bg-gradient-to-br from-pool-pink via-pool-purple to-pool-orange rounded-3xl shadow-xl transform hover:scale-105 active:scale-98 transition-all">
               <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
                 <Users size={40} className="text-pool-blue" />
               </div>
@@ -64,7 +64,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="text-center p-8 bg-gradient-to-br from-pool-green via-money-green to-coin-gold rounded-3xl shadow-xl transform hover:scale-105 transition-all">
+            <div className="text-center p-6 sm:p-8 bg-gradient-to-br from-pool-green via-money-green to-coin-gold rounded-3xl shadow-xl transform hover:scale-105 active:scale-98 transition-all">
               <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
                 <Star size={40} className="text-pool-pink" />
               </div>
@@ -80,10 +80,10 @@ export default function HomePage() {
       {/* How It Works Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-5xl font-bold text-center text-pool-navy mb-16 font-doodle">{"How It Works"}</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-pool-navy mb-8 sm:mb-12 md:mb-16 font-doodle">{"How It Works"}</h2>
 
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white/20 backdrop-blur-sm rounded-3xl p-12 shadow-2xl border border-white/30">
+            <div className="bg-white/20 backdrop-blur-sm rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl border border-white/30">
               <div className="grid md:grid-cols-3 gap-8 text-center">
                 <div>
                   <div className="bg-gradient-to-br from-pool-blue to-pool-purple rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
@@ -123,14 +123,14 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-20">
         <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto bg-white/20 backdrop-blur-sm rounded-3xl p-12 shadow-2xl border border-white/30">
-            <h2 className="text-4xl md:text-5xl font-bold text-pool-navy mb-6 font-doodle">{"Ready to Jump In?"}</h2>
+          <div className="max-w-3xl mx-auto bg-white/20 backdrop-blur-sm rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl border border-white/30">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-pool-navy mb-4 sm:mb-6 font-doodle">{"Ready to Jump In?"}</h2>
             <p className="text-xl text-pool-navy mb-8">
               {"Stop worrying about receipts, notes, and calculations. Start enjoying your time with friends!"}
             </p>
             <Link
               href="/download"
-              className="bg-gradient-to-r from-pool-pink to-pool-purple hover:from-pool-purple hover:to-pool-pink text-white font-bold py-6 px-12 rounded-full text-2xl transform hover:scale-110 transition-all shadow-lg hover:shadow-xl inline-flex items-center gap-3"
+              className="bg-gradient-to-r from-pool-pink to-pool-purple hover:from-pool-purple hover:to-pool-pink text-white font-bold py-4 px-8 sm:py-6 sm:px-12 rounded-full text-xl sm:text-2xl transform hover:scale-105 active:scale-95 transition-all shadow-lg hover:shadow-xl inline-flex items-center gap-3"
             >
               <Download size={28} />
               {"Get POOL Now!"}

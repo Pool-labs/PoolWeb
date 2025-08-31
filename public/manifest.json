@@ -1,21 +1,33 @@
 {
-  "name": "Pool App",
+  "name": "Pool - Group Funds Made Simple",
   "short_name": "Pool",
-  "description": "Split expenses easily with friends",
+  "description": "Split payments for group activities effortlessly. No more IOUs, receipts, or complicated calculations.",
   "start_url": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "theme_color": "#8b5cf6",
+  "categories": ["finance", "social", "utilities"],
   "icons": [
     {
-      "src": "/icon-192x192.png",
+      "src": "/images/pool-logo-new.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "/icon-512x512.png",
+      "src": "/images/pool-logo-new.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "/placeholder.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg"
+    }
+  ],
+  "prefer_related_applications": false
 }

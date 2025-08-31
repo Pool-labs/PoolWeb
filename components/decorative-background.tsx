@@ -4,12 +4,64 @@ import { useEffect, useState } from "react"
 
 export default function DecorativeBackground() {
   const [mounted, setMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+    // Check if mobile on mount and resize
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   if (!mounted) return null
+
+  // Reduced number of circles and simplified animations for mobile
+  if (isMobile) {
+    return (
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        {/* Mobile-optimized background with fewer, smaller circles */}
+        <div
+          className="decorative-circle absolute w-[300px] h-[300px] rounded-full mobile-float"
+          style={{
+            background: "radial-gradient(circle, #FF69B4 0%, transparent 70%)",
+            left: "-20%",
+            top: "-10%",
+          }}
+        />
+        <div
+          className="decorative-circle absolute w-[250px] h-[250px] rounded-full mobile-float"
+          style={{
+            background: "radial-gradient(circle, #4FC3F7 0%, transparent 70%)",
+            right: "-20%",
+            top: "20%",
+            animationDelay: "2s",
+          }}
+        />
+        <div
+          className="decorative-circle absolute w-[280px] h-[280px] rounded-full mobile-float"
+          style={{
+            background: "radial-gradient(circle, #FFD700 0%, transparent 70%)",
+            left: "10%",
+            bottom: "-15%",
+            animationDelay: "4s",
+          }}
+        />
+        <div
+          className="decorative-circle absolute w-[220px] h-[220px] rounded-full mobile-float"
+          style={{
+            background: "radial-gradient(circle, #FF8C00 0%, transparent 70%)",
+            right: "-10%",
+            bottom: "10%",
+            animationDelay: "3s",
+          }}
+        />
+      </div>
+    )
+  }
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
