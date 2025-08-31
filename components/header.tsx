@@ -11,24 +11,27 @@ export default function Header() {
   const closeMenu = () => setIsMenuOpen(false)
 
   return (
-    <header className="sticky top-0 z-50 bg-white/15 backdrop-blur-2xl backdrop-saturate-150 border-b border-white/20 shadow-md">
+    <header className="sticky top-0 z-50 bg-white/30 backdrop-blur-xl border-b border-white/20 shadow-lg supports-[backdrop-filter]:bg-white/40">
       <div className="container mx-auto px-4 py-3 sm:py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2 sm:space-x-3 hover:scale-105 transition-transform">
+          <div className="flex items-center justify-center space-x-3 ">
             <Image
               src="/images/pool-logo-new.png"
               alt="POOL Logo"
               width={40}
               height={40}
-              className="sm:w-[50px] sm:h-[50px]"
+              className="w-[32px] h-[32px] sm:w-[50px] sm:h-[50px]"
             />
-            <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-red-600 via-orange-600 via-yellow-600 via-green-600 via-blue-600 to-purple-600 bg-[length:300%_100%] bg-clip-text text-transparent">
+            <span className="absolute left-1/2 -translate-x-1/2 md:static md:transform-none text-2xl sm:text-3xl font-bold bg-gradient-to-r from-red-600 via-orange-600 via-yellow-600 via-green-600 via-blue-600 to-purple-600 bg-[length:300%_100%] bg-clip-text text-transparent">
               POOL
             </span>
-          </Link>
+          </div>
+          <button className="md:hidden text-pool-navy w-10 h-10 flex items-center justify-center" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex md:ml-auto space-x-8">
             <Link
               href="/"
               className="text-pool-navy hover:text-pool-pink font-bold text-lg transition-colors hover:scale-110 transform"
@@ -54,17 +57,11 @@ export default function Header() {
               Contact
             </Link>
           </nav>
-
-          {/* Mobile Menu Button */}
-          <button className="md:hidden text-pool-navy" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 border-t border-pool-blue">
-            <div className="flex flex-col space-y-4 pt-4">
+        <nav className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div className="flex flex-col space-y-3 py-4 border-t border-white/20">
               <Link href="/" className="text-pool-navy hover:text-pool-pink font-bold text-lg" onClick={closeMenu}>
                 Home
               </Link>
@@ -87,7 +84,6 @@ export default function Header() {
               </Link>
             </div>
           </nav>
-        )}
       </div>
     </header>
   )
