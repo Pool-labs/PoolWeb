@@ -2,9 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import "./normalize-mobile.css"
-import "./font-config.css"
-import "./mobile-unified.css"
+import "./mobile.css"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import DecorativeBackground from "@/components/decorative-background"
@@ -25,8 +23,17 @@ export const metadata: Metadata = {
   viewport: {
     width: 'device-width',
     initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
   },
-  themeColor: '#8b5cf6'
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#020817' }
+  ],
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+  }
 }
 
 export default function RootLayout({
