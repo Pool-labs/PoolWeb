@@ -11,7 +11,7 @@ export default function Header() {
   const closeMenu = () => setIsMenuOpen(false)
 
   return (
-    <header className="bg-white/95 backdrop-blur-md border-b-4 border-pool-navy shadow-lg sticky top-0 z-50">
+    <header className="sticky top-0 z-50 bg-white/15 backdrop-blur-2xl backdrop-saturate-150 border-b border-white/20 shadow-md">
       <div className="container mx-auto px-4 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-2 sm:space-x-3 hover:scale-105 transition-transform">
@@ -22,7 +22,7 @@ export default function Header() {
               height={40}
               className="sm:w-[50px] sm:h-[50px]"
             />
-            <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-red-600 via-orange-600 via-yellow-600 via-green-600 via-blue-600 to-purple-600 bg-[length:300%_100%] bg-clip-text text-transparent sm:animate-gradient-x">
+            <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-red-600 via-orange-600 via-yellow-600 via-green-600 via-blue-600 to-purple-600 bg-[length:300%_100%] bg-clip-text text-transparent animate-gradient-x">
               POOL
             </span>
           </Link>

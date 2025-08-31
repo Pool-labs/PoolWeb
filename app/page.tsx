@@ -33,43 +33,41 @@ export default function HomePage() {
       {/* Features Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-8 sm:mb-12 md:mb-16 text-pool-navy relative">
-            <span className="bg-gradient-to-r from-red-800 via-yellow-700 to-blue-800 bg-[length:200%_100%] bg-clip-text text-transparent sm:animate-gradient-x">
-              WTF
-            </span>
-            <span className="text-xs sm:text-sm text-gray-600 -top-4">rick</span>
-            <span className="text-pool-navy"> Is Pool?!</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-8 sm:mb-12 md:mb-16 text-pool-navy flex w-full items-baseline justify-center gap-1 sm:gap-2 tracking-tight">
+            <span className="bg-gradient-to-r from-red-800 via-yellow-700 to-blue-800 bg-[length:200%_100%] bg-clip-text text-transparent animate-gradient-x leading-none">WTF</span>
+            <span className="text-[10px] sm:text-sm text-gray-600 relative -top-1 sm:top-0 leading-none">rick</span>
+            <span className="text-pool-navy leading-none">Is Pool?!</span>
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="text-center p-6 sm:p-8 bg-gradient-to-br from-pool-blue via-splash-blue to-pool-navy rounded-3xl shadow-xl transform hover:scale-105 active:scale-98 transition-all">
+            <div className="text-center p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transform hover:scale-105 active:scale-98 transition-all border border-white/30 bg-white/15 backdrop-blur-2xl">
               <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
                 <Zap size={40} className="text-pool-yellow" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Simple Splitting</h3>
-              <p className="text-white text-lg">
+              <h3 className="text-2xl font-bold text-pool-navy mb-4">Simple Splitting</h3>
+              <p className="text-pool-navy text-lg">
                 {
                   "Easily split payments for daily lunches, group trips, or any activity with friends. No more complicated calculations!"
                 }
               </p>
             </div>
 
-            <div className="text-center p-6 sm:p-8 bg-gradient-to-br from-pool-pink via-pool-purple to-pool-orange rounded-3xl shadow-xl transform hover:scale-105 active:scale-98 transition-all">
+            <div className="text-center p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transform hover:scale-105 active:scale-98 transition-all border border-white/30 bg-white/15 backdrop-blur-2xl">
               <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
                 <Users size={40} className="text-pool-blue" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Virtual Card Access</h3>
-              <p className="text-white text-lg">
+              <h3 className="text-2xl font-bold text-pool-navy mb-4">Virtual Card Access</h3>
+              <p className="text-pool-navy text-lg">
                 {"Everyone gets access to a virtual card for tap-to-pay. Group activities made simple!"}
               </p>
             </div>
 
-            <div className="text-center p-6 sm:p-8 bg-gradient-to-br from-pool-green via-money-green to-coin-gold rounded-3xl shadow-xl transform hover:scale-105 active:scale-98 transition-all">
+            <div className="text-center p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transform hover:scale-105 active:scale-98 transition-all border border-white/30 bg-white/15 backdrop-blur-2xl">
               <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
                 <Star size={40} className="text-pool-pink" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">No More IOUs</h3>
-              <p className="text-white text-lg">
+              <h3 className="text-2xl font-bold text-pool-navy mb-4">No More IOUs</h3>
+              <p className="text-pool-navy text-lg">
                 {"No more waiting for friends to pay you back or keeping track of receipts. Deposit once and enjoy!"}
               </p>
             </div>
