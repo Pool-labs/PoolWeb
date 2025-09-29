@@ -344,17 +344,29 @@ export default function SurveyPage() {
   const handleNext = () => {
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1)
+      // Scroll to top of page
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     }
   }
 
   const handlePrevious = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1)
+      // Scroll to top of page
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     }
   }
 
   const handleQuestionClick = (questionNumber: number) => {
     setCurrentStep(getQuestionStep(questionNumber))
+    // Scroll to top of page
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
   }
 
   const handleSurveySubmit = (e: React.FormEvent) => {
@@ -563,6 +575,10 @@ export default function SurveyPage() {
                       } else {
                         setCurrentStep(1)
                       }
+                      // Scroll to top of page
+                      setTimeout(() => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }, 200);
                     }}
                     className="w-full bg-pool-blue hover:bg-pool-blue/80 text-white font-bold py-3 px-6 rounded-full transition-all flex items-center justify-center gap-2"
                   >
@@ -1056,7 +1072,7 @@ export default function SurveyPage() {
                       <button
                         key={questionNumber}
                         onClick={() => {
-                          setCurrentStep(getQuestionStep(questionNumber))
+                          handleQuestionClick(questionNumber)
                           setShowProgress(false)
                         }}
                         className={`p-3 rounded-xl text-left flex items-center gap-2 transition-all ${
@@ -1098,7 +1114,7 @@ export default function SurveyPage() {
           )}
 
           {/* Form content */}
-          <form onSubmit={handleSurveySubmit} className="bg-white/20 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/30">
+          <form onSubmit={handleSurveySubmit} className="survey-questions-area bg-white/20 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/30">
             {renderStep()}
 
             {/* Navigation buttons */}
