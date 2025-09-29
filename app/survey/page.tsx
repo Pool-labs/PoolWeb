@@ -899,8 +899,9 @@ export default function SurveyPage() {
                 {[
                   "Auto-tracking expenses",
                   "Instant pay/settle up",
-                  "Group cards",
+                  "Virtual cards for each group member",
                   "Reminders",
+                  "Eliminating Calculations",
                   "None of the above",
                 ].map((option) => (
                   <label
@@ -936,7 +937,7 @@ export default function SurveyPage() {
                 onChange={(e) => handleInputChange("concerns", e.target.value)}
                 rows={3}
                 className="w-full px-4 py-3 rounded-2xl border-2 border-pool-blue focus:border-pool-pink outline-none transition-colors resize-none"
-                placeholder="..."
+                placeholder="Share your concerns..."
               />
             </div>
           </div>
@@ -1091,7 +1092,7 @@ export default function SurveyPage() {
                 className="bg-gradient-to-r from-pool-green to-pool-blue text-white font-bold py-3 px-8 rounded-full text-lg transform hover:scale-105 transition-all shadow-lg hover:shadow-xl flex items-center gap-2"
               >
                 <Gift className="w-5 h-5" />
-                Submit Now & Get Your Offer
+                Submit Now & Get VIP Access
               </button>
             </div>
           )}
