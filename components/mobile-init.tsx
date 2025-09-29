@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from 'react'
-import { setMobileViewportHeight, addTouchClass, debounce, optimizeForSafari, reduceMotionForLowPower } from '@/lib/mobile-utils'
+import { setMobileViewportHeight, addTouchClass, debounce } from '@/lib/mobile-utils'
 
 export default function MobileInit() {
   useEffect(() => {
@@ -11,16 +11,10 @@ export default function MobileInit() {
     // Add touch class
     addTouchClass()
     
-    // Apply Safari optimizations
-    optimizeForSafari()
-    
-    // Reduce motion for performance
-    reduceMotionForLowPower()
-    
     // Handle viewport height changes
     const handleResize = debounce(() => {
       setMobileViewportHeight()
-    }, 150)
+    }, 100)
     
     window.addEventListener('resize', handleResize)
     window.addEventListener('orientationchange', handleResize)

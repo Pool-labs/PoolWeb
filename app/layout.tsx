@@ -43,18 +43,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Preload critical resources */}
-        <link rel="preload" href="/images/pool-logo-new.png" as="image" />
-        <link rel="dns-prefetch" href="https://firestore.googleapis.com" />
-        <link rel="preconnect" href="https://firestore.googleapis.com" crossOrigin="" />
-        
-        {/* Safari-specific meta tags */}
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-touch-fullscreen" content="yes" />
-      </head>
       <body className={`${inter.className} bg-white min-h-screen relative`}>
         <ThemeProvider
           attribute="class"
