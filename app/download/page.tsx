@@ -8,7 +8,7 @@ export default function DownloadPage() {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-8">
-            <Image src="/images/pool-logo-new.png" alt="POOL Logo" width={150} height={150} className="mx-auto" />
+            <Image src="/images/pool-logo-new.png" alt="POOL Logo" width={150} height={150} className="mx-auto" priority />
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold text-pool-navy mb-6">{"Download POOL!"}</h1>

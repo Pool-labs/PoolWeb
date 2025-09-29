@@ -63,3 +63,46 @@ export const addTouchClass = () => {
     document.documentElement.classList.add('no-touch-device')
   }
 }
+
+// Safari/iOS specific optimizations
+export const optimizeForSafari = () => {
+  if (typeof window === 'undefined') return
+  
+  if (isIOS()) {
+    // Disable smooth scrolling on iOS for better performance
+    document.documentElement.style.scrollBehavior = 'auto'
+    
+    // Force hardware acceleration
+    document.body.style.transform = 'translateZ(0)'
+    document.body.style.webkitTransform = 'translateZ(0)'
+    
+    // Optimize repaints
+    document.body.style.webkitBackfaceVisibility = 'hidden'
+    document.body.style.backfaceVisibility = 'hidden'
+    
+    // Disable text size adjust
+    document.body.style.webkitTextSizeAdjust = '100%'
+    
+    // Add iOS class for CSS targeting
+    document.documentElement.classList.add('ios-device')
+  }
+}
+
+// Performance optimization for animations
+export const reduceMotionForLowPower = () => {
+  if (typeof window === 'undefined') return
+  
+  // Check for battery status (if available) and reduce motion
+  if ('getBattery' in navigator) {
+    (navigator as any).getBattery().then((battery: any) => {
+      if (battery.level < 0.2) {
+        document.documentElement.classList.add('battery-low')
+      }
+    })
+  }
+  
+  // Check for reduced motion preference
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('reduce-motion')
+  }
+}

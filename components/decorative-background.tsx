@@ -19,7 +19,54 @@ export default function DecorativeBackground() {
 
   if (!mounted) return null
 
-  // Always render full decorative background, including on mobile
+  // Render optimized but full background on mobile
+  if (isMobile) {
+    return (
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        {/* Simplified but colorful background for mobile */}
+        
+        {/* Pink Circle - Top Left (smaller for mobile) */}
+        <div
+          className="absolute w-[600px] h-[600px] rounded-full blur-[60px] opacity-60"
+          style={{
+            background: "radial-gradient(circle, #FF1493 0%, #FF69B4 30%, #FFB6C1 60%, transparent 100%)",
+            left: "-20%",
+            top: "-20%",
+          }}
+        />
+
+        {/* Orange Circle - Top Right (smaller for mobile) */}
+        <div
+          className="absolute w-[550px] h-[550px] rounded-full blur-[50px] opacity-65"
+          style={{
+            background: "radial-gradient(circle, #FF4500 0%, #FF8C00 30%, #FFA500 60%, transparent 100%)",
+            right: "-25%",
+            top: "-15%",
+          }}
+        />
+
+        {/* Blue Circle - Bottom Right (smaller for mobile) */}
+        <div
+          className="absolute w-[650px] h-[650px] rounded-full blur-[55px] opacity-55"
+          style={{
+            background: "radial-gradient(circle, #0080FF 0%, #4FC3F7 30%, #87CEEB 60%, transparent 100%)",
+            right: "-30%",
+            bottom: "-25%",
+          }}
+        />
+
+        {/* Yellow Circle - Bottom Left (smaller for mobile) */}
+        <div
+          className="absolute w-[500px] h-[500px] rounded-full blur-[45px] opacity-70"
+          style={{
+            background: "radial-gradient(circle, #FFD700 0%, #FFA500 30%, #FFFF99 60%, transparent 100%)",
+            left: "-25%",
+            bottom: "-20%",
+          }}
+        />
+      </div>
+    )
+  }
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">

@@ -227,36 +227,62 @@
   }
 }
 
-/* Performance optimizations */
+/* Keep visual effects on mobile but optimize performance */
 @media (max-width: 768px) {
-  /* Reduce blur effects */
+  /* Reduce blur intensity but keep the effect */
   .blur-\[100px\],
   .blur-\[120px\],
-  .blur-\[110px\],
+  .blur-\[110px\] {
+    filter: blur(60px) !important;
+  }
+  
   .blur-\[90px\],
   .blur-\[80px\],
-  .blur-\[95px\],
+  .blur-\[95px\] {
+    filter: blur(50px) !important;
+  }
+  
   .blur-\[75px\],
   .blur-\[85px\],
-  .blur-\[70px\],
+  .blur-\[70px\] {
+    filter: blur(40px) !important;
+  }
+  
   .blur-\[60px\],
   .blur-\[65px\],
   .blur-\[55px\],
   .blur-\[58px\],
   .blur-\[62px\] {
-    filter: blur(40px) !important;
+    filter: blur(30px) !important;
   }
   
-  /* Optimize backdrop filters */
-  .backdrop-blur-md {
-    backdrop-filter: blur(8px);
-  }
-  
+  /* Keep backdrop blur effects */
   .backdrop-blur-sm {
     backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
   
-  /* Reduce shadow complexity */
+  .backdrop-blur-md {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  
+  .backdrop-blur-lg {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  
+  .backdrop-blur-xl {
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+  
+  .backdrop-blur-2xl {
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+  }
+  
+  /* Keep shadows but lighter */
   .shadow-2xl {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
@@ -266,8 +292,89 @@
   }
 }
 
+/* iOS Safari specific optimizations */
+.ios-device {
+  /* Force hardware acceleration */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  
+  /* Optimize repaints */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  
+  /* Improve font rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ios-device .backdrop-blur-sm,
+.ios-device .backdrop-blur-md {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Battery level optimizations */
+.battery-low *,
+.reduce-motion * {
+  animation-duration: 0.01s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01s !important;
+}
+
+/* Touch device optimizations */
+.touch-device {
+  /* Prevent text selection on touch */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.touch-device input,
+.touch-device textarea {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 /* Font loading optimization */
 @media (max-width: 768px) {
+  /* Optimize font loading */
+  body {
+    font-display: swap;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* iOS Safari specific performance fixes */
+@supports (-webkit-overflow-scrolling: touch) {
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent elastic scrolling issues */
+  .min-h-screen {
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+  }
+}
+
+/* Reduce composite layers on mobile */
+@media (max-width: 768px) {
+  /* Remove transform3d from non-essential elements */
+  .transform:not(.hover\:scale-105):not(.hover\:scale-110) {
+    transform: none !important;
+  }
+  
+  /* Optimize fixed positioned elements */
+  .fixed {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
 }
 
 /* Smooth scrolling for mobile */

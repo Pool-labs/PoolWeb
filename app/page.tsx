@@ -9,7 +9,7 @@ export default function HomePage() {
       <section className="container mx-auto px-4 py-20 text-center relative">
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="mb-8">
-            <Image src="/images/pool-logo-new.png" alt="POOL Logo" width={200} height={200} className="mx-auto" />
+            <Image src="/images/pool-logo-new.png" alt="POOL Logo" width={200} height={200} className="mx-auto" priority />
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-pool-navy mb-6">
