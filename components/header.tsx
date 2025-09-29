@@ -45,6 +45,18 @@ export default function Header() {
               Download
             </Link>
             <Link
+              href="/preregister"
+              className="text-pool-navy hover:text-pool-pink font-bold text-lg transition-colors hover:scale-110 transform"
+            >
+              Pre-Register
+            </Link>
+            <Link
+              href="/survey"
+              className="text-pool-navy hover:text-pool-pink font-bold text-lg transition-colors hover:scale-110 transform"
+            >
+              Survey
+            </Link>
+            <Link
               href="/faq"
               className="text-pool-navy hover:text-pool-pink font-bold text-lg transition-colors hover:scale-110 transform"
             >
@@ -60,7 +72,7 @@ export default function Header() {
         </div>
 
         {/* Mobile Navigation */}
-        <nav className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}>
+        <nav className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
           <div className="flex flex-col space-y-3 py-4 border-t border-white/20">
               <Link href="/" className="text-pool-navy hover:text-pool-pink font-bold text-lg" onClick={closeMenu}>
                 Home
@@ -71,6 +83,16 @@ export default function Header() {
                 onClick={closeMenu}
               >
                 Download
+              </Link>
+              <Link
+                href="/preregister"
+                className="text-pool-navy hover:text-pool-pink font-bold text-lg"
+                onClick={closeMenu}
+              >
+                Pre-Register
+              </Link>
+              <Link href="/survey" className="text-pool-navy hover:text-pool-pink font-bold text-lg" onClick={closeMenu}>
+                Survey
               </Link>
               <Link href="/faq" className="text-pool-navy hover:text-pool-pink font-bold text-lg" onClick={closeMenu}>
                 FAQ

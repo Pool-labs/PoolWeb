@@ -9,7 +9,6 @@ export default function FAQPage() {
             <span className="bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent whitespace-nowrap">
               WTF
             </span>
-            <span className="text-sm text-gray-600 -top-4">rick</span>
             <span className="text-black"> Is Pool?!</span>
           </h1>
 

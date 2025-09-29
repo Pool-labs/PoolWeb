@@ -1,5 +1,6 @@
 import Image from "next/image"
-import { Apple, Play } from "lucide-react"
+import Link from "next/link"
+import { Apple, Play, Bell } from "lucide-react"
 
 export default function DownloadPage() {
   return (
@@ -27,6 +28,24 @@ export default function DownloadPage() {
               <button className="bg-pool-green hover:bg-pool-navy text-white font-bold py-4 px-8 rounded-full text-lg w-full transition-all">
                 {"Coming Soon!"}
               </button>
+            </div>
+          </div>
+
+          {/* Pre-Register Section */}
+          <div className="mt-16">
+            <div className="bg-gradient-to-r from-pool-pink/20 to-pool-yellow/20 backdrop-blur-sm rounded-3xl p-8 shadow-xl border-2 border-white/40 max-w-xl mx-auto">
+              <div className="flex items-center justify-center mb-4">
+                <Bell className="w-8 h-8 text-pool-navy" />
+              </div>
+              <h2 className="text-2xl font-bold text-pool-navy mb-4">Get Notified When We Launch!</h2>
+              <p className="text-pool-navy/80 mb-6">
+                Be the first to know when POOL is available for download. Join our VIP list for exclusive early access.
+              </p>
+              <Link href="/preregister">
+                <button className="bg-gradient-to-r from-pool-pink to-pool-yellow hover:from-pool-yellow hover:to-pool-pink text-white font-bold py-4 px-8 rounded-full text-lg w-full transition-all transform hover:scale-105 shadow-lg">
+                  Pre-Register Now
+                </button>
+              </Link>
             </div>
           </div>
         </div>
