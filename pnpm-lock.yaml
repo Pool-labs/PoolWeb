@@ -14,6 +14,21 @@ importers:
       '@firebase/firestore':
         specifier: ^4.9.2
         version: 4.9.2(@firebase/app@0.14.3)
+      '@fortawesome/fontawesome-svg-core':
+        specifier: ^7.0.1
+        version: 7.0.1
+      '@fortawesome/free-brands-svg-icons':
+        specifier: ^7.0.1
+        version: 7.0.1
+      '@fortawesome/free-regular-svg-icons':
+        specifier: ^7.0.1
+        version: 7.0.1
+      '@fortawesome/free-solid-svg-icons':
+        specifier: ^7.0.1
+        version: 7.0.1
+      '@fortawesome/react-fontawesome':
+        specifier: ^3.0.2
+        version: 3.0.2(@fortawesome/fontawesome-svg-core@7.0.1)(react@19.0.0)
       '@hookform/resolvers':
         specifier: ^3.9.1
         version: 3.9.1(react-hook-form@7.54.1(react@19.0.0))
@@ -116,6 +131,9 @@ importers:
       date-fns:
         specifier: 4.1.0
         version: 4.1.0
+      embla-carousel-autoplay:
+        specifier: ^8.6.0
+        version: 8.6.0(embla-carousel@8.5.1)
       embla-carousel-react:
         specifier: 8.5.1
         version: 8.5.1(react@19.0.0)
@@ -573,6 +591,33 @@ packages:
 
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
+
+  '@fortawesome/fontawesome-common-types@7.0.1':
+    resolution: {integrity: sha512-0VpNtO5cNe1/HQWMkl4OdncYK/mv9hnBte0Ew0n6DMzmo3Q3WzDFABHm6LeNTipt5zAyhQ6Ugjiu8aLaEjh1gg==}
+    engines: {node: '>=6'}
+
+  '@fortawesome/fontawesome-svg-core@7.0.1':
+    resolution: {integrity: sha512-x0cR55ILVqFpUioSMf6ebpRCMXMcheGN743P05W2RB5uCNpJUqWIqW66Lap8PfL/lngvjTbZj0BNSUweIr/fHQ==}
+    engines: {node: '>=6'}
+
+  '@fortawesome/free-brands-svg-icons@7.0.1':
+    resolution: {integrity: sha512-6xPmn5SrND/GM0+W33E77x05+aDn6RpR02eWd8eLdN0IxY0vXa5yU/ugaAKloOVxiG9w2330TSRsbJYL6c57Ow==}
+    engines: {node: '>=6'}
+
+  '@fortawesome/free-regular-svg-icons@7.0.1':
+    resolution: {integrity: sha512-4V9fHbHjcx9Qu4O99AM5B4zuEDfB4zajk1I77hEzOxPN00f8g3484Aeq6WpfFcmookvjLE3Pr71Dhf/lqw7tbA==}
+    engines: {node: '>=6'}
+
+  '@fortawesome/free-solid-svg-icons@7.0.1':
+    resolution: {integrity: sha512-esKuSrl1WMOTMDLNt38i16VfLe/gRZt2ZAJ3Yw7slfs7sj583MKqNFqO57zmhknk1Sya6f9Wys89aCzIJkcqlg==}
+    engines: {node: '>=6'}
+
+  '@fortawesome/react-fontawesome@3.0.2':
+    resolution: {integrity: sha512-cmp/nT0pPC7HUALF8uc3+D5ECwEBWxYQbOIHwtGUWEu72sWtZc26k5onr920HWOViF0nYaC+Qzz6Ln56SQcaVg==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      '@fortawesome/fontawesome-svg-core': ~6 || ~7
+      react: ^18.0.0 || ^19.0.0
 
   '@grpc/grpc-js@1.9.15':
     resolution: {integrity: sha512-nqE7Hc0AzI+euzUwDAy0aY5hCp10r734gMGRdU+qOPX0XSceI2ULrcXB5U2xSc5VkWwalCj4M7GzCAygZl2KoQ==}
@@ -2179,6 +2224,11 @@ packages:
 
   electron-to-chromium@1.5.207:
     resolution: {integrity: sha512-mryFrrL/GXDTmAtIVMVf+eIXM09BBPlO5IQ7lUyKmK8d+A4VpRGG+M3ofoVef6qyF8s60rJei8ymlJxjUA8Faw==}
+
+  embla-carousel-autoplay@8.6.0:
+    resolution: {integrity: sha512-OBu5G3nwaSXkZCo1A6LTaFMZ8EpkYbwIaH+bPqdBnDGQ2fh4+NbzjXjs2SktoPNKCtflfVMc75njaDHOYXcrsA==}
+    peerDependencies:
+      embla-carousel: 8.6.0
 
   embla-carousel-react@8.5.1:
     resolution: {integrity: sha512-z9Y0K84BJvhChXgqn2CFYbfEi6AwEr+FFVVKm/MqbTQ2zIzO1VQri6w67LcfpVF0AjbhwVMywDZqY4alYkjW5w==}
@@ -3988,6 +4038,29 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
+  '@fortawesome/fontawesome-common-types@7.0.1': {}
+
+  '@fortawesome/fontawesome-svg-core@7.0.1':
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 7.0.1
+
+  '@fortawesome/free-brands-svg-icons@7.0.1':
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 7.0.1
+
+  '@fortawesome/free-regular-svg-icons@7.0.1':
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 7.0.1
+
+  '@fortawesome/free-solid-svg-icons@7.0.1':
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 7.0.1
+
+  '@fortawesome/react-fontawesome@3.0.2(@fortawesome/fontawesome-svg-core@7.0.1)(react@19.0.0)':
+    dependencies:
+      '@fortawesome/fontawesome-svg-core': 7.0.1
+      react: 19.0.0
+
   '@grpc/grpc-js@1.9.15':
     dependencies:
       '@grpc/proto-loader': 0.7.15
@@ -5556,6 +5629,10 @@ snapshots:
   ee-first@1.1.1: {}
 
   electron-to-chromium@1.5.207: {}
+
+  embla-carousel-autoplay@8.6.0(embla-carousel@8.5.1):
+    dependencies:
+      embla-carousel: 8.5.1
 
   embla-carousel-react@8.5.1(react@19.0.0):
     dependencies:
