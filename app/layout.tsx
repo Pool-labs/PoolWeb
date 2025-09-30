@@ -43,7 +43,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} bg-white min-h-screen relative overflow-x-hidden`}>
+      <body className={`${inter.className} min-h-screen relative overflow-x-hidden`} style={{ backgroundColor: 'transparent' }}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

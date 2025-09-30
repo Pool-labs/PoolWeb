@@ -19,9 +19,100 @@ export default function DecorativeBackground() {
 
   if (!mounted) return null
 
-  // Always render full decorative background, including on mobile
+  // Mobile optimized background with desktop colors
+  if (isMobile) {
+    return (
+      <>
+        {/* Extended gradient background to prevent white gaps on mobile - using desktop colors */}
+        <div 
+          className="fixed pointer-events-none z-[-2]" 
+          style={{
+            top: '-100%',
+            left: '-50%',
+            right: '-50%',
+            bottom: '-100%',
+            width: '200%',
+            height: '300%',
+            background: 'linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 25%, #e17055 50%, #d63031 75%, #74b9ff 100%)',
+            opacity: 0.3,
+          }}
+        />
+        
+        {/* Simplified mobile decorative elements with vibrant colors */}
+        <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+          {/* Pink gradient - Top Left */}
+          <div
+            className="absolute w-[350px] h-[350px] rounded-full blur-[50px] opacity-70"
+            style={{
+              background: "radial-gradient(circle, #FF1493 0%, #FF69B4 30%, #FFB6C1 60%, transparent 100%)",
+              left: "-20%",
+              top: "-10%",
+            }}
+          />
+          
+          {/* Orange gradient - Top Right */}
+          <div
+            className="absolute w-[300px] h-[300px] rounded-full blur-[45px] opacity-75"
+            style={{
+              background: "radial-gradient(circle, #FF4500 0%, #FF8C00 30%, #FFA500 60%, transparent 100%)",
+              right: "-15%",
+              top: "10%",
+            }}
+          />
+          
+          {/* Blue gradient - Bottom */}
+          <div
+            className="absolute w-[350px] h-[350px] rounded-full blur-[50px] opacity-65"
+            style={{
+              background: "radial-gradient(circle, #0080FF 0%, #4FC3F7 30%, #87CEEB 60%, transparent 100%)",
+              right: "-20%",
+              bottom: "-10%",
+            }}
+          />
+          
+          {/* Yellow gradient - Left */}
+          <div
+            className="absolute w-[300px] h-[300px] rounded-full blur-[45px] opacity-70"
+            style={{
+              background: "radial-gradient(circle, #FFD700 0%, #FFFF00 30%, #FFFFE0 60%, transparent 100%)",
+              left: "-15%",
+              bottom: "20%",
+            }}
+          />
+          
+          {/* Center blend */}
+          <div
+            className="absolute w-[250px] h-[250px] rounded-full blur-[40px] opacity-50"
+            style={{
+              background: "radial-gradient(circle, #FF69B4 0%, #FFD700 50%, #4FC3F7 100%)",
+              left: "50%",
+              top: "40%",
+              transform: "translate(-50%, -50%)",
+            }}
+          />
+        </div>
+      </>
+    )
+  }
 
+  // Desktop full decorative background
   return (
+    <>
+      {/* Extended gradient background to prevent white gaps */}
+      <div 
+        className="fixed pointer-events-none z-[-2]" 
+        style={{
+          top: '-50%',
+          left: '-50%',
+          right: '-50%',
+          bottom: '-50%',
+          width: '200%',
+          height: '200%',
+          background: 'linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 25%, #e17055 50%, #d63031 75%, #74b9ff 100%)',
+          opacity: 0.3,
+        }}
+      />
+      
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
       {/* Large Corner Circles - Extended for full coverage */}
 
@@ -209,5 +300,6 @@ export default function DecorativeBackground() {
         }}
       />
     </div>
+    </>
   )
 }

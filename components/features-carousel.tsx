@@ -27,14 +27,30 @@ const features = [
 ]
 
 export default function FeaturesCarousel() {
+  const [isMobile, setIsMobile] = useState(false)
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+  
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { 
       align: 'center',
       containScroll: 'trimSnaps',
       dragFree: false,
-      loop: true
+      loop: true,
+      skipSnaps: false,
+      // Reduce rerender on mobile
+      watchDrag: isMobile,
     },
-    [Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true })]
+    [Autoplay({ 
+      delay: isMobile ? 5000 : 4000, // Slower on mobile to save battery
+      stopOnInteraction: false, 
+      stopOnMouseEnter: true 
+    })]
   )
   const [selectedIndex, setSelectedIndex] = useState(0)
 
