@@ -433,7 +433,7 @@ export default function SurveyPage() {
   const submitForm = async () => {
     setIsSubmitting(true)
     try {
-      const response = await fetch("/api/survey", {
+      const response = await fetch("/api/questionnaire", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -474,7 +474,7 @@ export default function SurveyPage() {
         lastName: formData.lastName || '',
         email: formData.email || ''
       })
-      router.push(`/survey/confirmation?${params}`)
+      router.push(`/questionnaire/confirmation?${params}`)
     } catch (error) {
       // Survey submission error
       alert("An error occurred while submitting the survey. Please try again.")

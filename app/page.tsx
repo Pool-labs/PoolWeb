@@ -29,7 +29,7 @@ export default function HomePage() {
               Download Now!
             </Link>
             <Link
-              href="/survey"
+              href="/questionnaire"
               className="bg-gradient-to-r from-pool-green to-pool-blue hover:from-pool-blue hover:to-pool-green text-white font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-full text-lg sm:text-xl transform hover:scale-105 active:scale-95 transition-all shadow-lg hover:shadow-xl flex items-center gap-2"
             >
               <ClipboardList size={24} />
@@ -77,7 +77,7 @@ export default function HomePage() {
                 {"Get POOL Now!"}
               </Link>
               <Link
-                href="/survey"
+                href="/questionnaire"
                 className="bg-gradient-to-r from-pool-green to-pool-blue hover:from-pool-blue hover:to-pool-green text-white font-bold py-4 px-8 sm:py-6 sm:px-12 rounded-full text-xl sm:text-2xl transform hover:scale-105 active:scale-95 transition-all shadow-lg hover:shadow-xl inline-flex items-center gap-3"
               >
                 <ClipboardList size={28} />
