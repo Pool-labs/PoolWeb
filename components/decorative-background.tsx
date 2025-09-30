@@ -22,7 +22,7 @@ export default function DecorativeBackground() {
   // Always render full decorative background, including on mobile
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" style={{ backgroundColor: 'white' }}>
       {/* Large Corner Circles - Extended for full coverage */}
 
       {/* Pink Circle - Top Left */}
