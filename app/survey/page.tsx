@@ -438,7 +438,7 @@ export default function SurveyPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
             <h2 className="text-4xl font-bold text-pool-navy mb-8 text-center text-shadow">
-              Survey Already Completed
+              Insights Already Completed
             </h2>
             
             <div className="bg-white/20 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/30">
@@ -446,7 +446,7 @@ export default function SurveyPage() {
                 <AlertCircle className="w-8 h-8 text-yellow-600 flex-shrink-0" />
                 <div>
                   <p className="text-lg font-bold text-yellow-800">
-                    You have already completed the survey.
+                    You have already completed the insights.
                   </p>
                   <p className="text-yellow-700 mt-1">
                     Thank you for your previous submission! We appreciate your feedback.
@@ -479,12 +479,12 @@ export default function SurveyPage() {
             </h2>
             
             <div className="bg-white/20 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/30">
-              <div className="mb-8">
+              <div className="mb-8 ">
                 {isPartialSubmission ? (
                   <>
                     <div className="mb-8 bg-yellow-100 border-2 border-yellow-400 rounded-2xl p-6">
-                      <p className="text-lg font-bold text-yellow-800 flex items-center justify-center gap-2">
-                        To unlock VIP access to our exclusive merch drop, please complete the remaining questions.
+                      <p className="text-lg font-bold text-yellow-800 flex items-center justify-center gap-2 text-center">
+                        Finish the remaining questions to unlock VIP access to our exclusive merch drop and claim a free item of your choice.
                       </p>
                       <p className="text-yellow-800 text-center mt-2">
                         {questionsAnswered} of {totalQuestions} questions answered
@@ -596,7 +596,7 @@ export default function SurveyPage() {
                         Submitting...
                       </div>
                     ) : (
-                      isPartialSubmission ? "Submit Survey" : "Submit & Get My Offer"
+                      isPartialSubmission ? "Submit Insights" : "Submit Insights"
                     )}
                   </button>
                 </div>
@@ -966,17 +966,15 @@ export default function SurveyPage() {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-5xl font-bold text-pool-navy mb-8 text-center text-shadow">
-            Survey
+            Insights Quiz
           </h1>
 
           {/* VIP access banner */}
           <div className="bg-gradient-to-r from-pool-pink to-pool-purple rounded-3xl p-6 mb-8 text-white shadow-xl">
             <div className="flex items-center justify-center space-x-3">
-              <Gift className="w-8 h-8 animate-bounce" />
               <p className="text-lg font-bold text-center text-shadow">
-                Complete this survey and unlock VIP access to our exclusive merch collection once you submit!
+              Your input matters. Share your thoughts and we’ll hook you up with first access to our exclusive merch collection! Plus, you’ll get to pick a free item of your choice!
               </p>
-              <Gift className="w-8 h-8 animate-bounce" />
             </div>
           </div>
 
@@ -1143,7 +1141,7 @@ export default function SurveyPage() {
                   type="submit"
                   className="ml-auto bg-gradient-to-r from-pool-pink to-pool-purple hover:from-pool-purple hover:to-pool-pink text-white font-bold py-3 px-8 rounded-full transform hover:scale-105 transition-all shadow-lg hover:shadow-xl"
                 >
-                  Submit Survey
+                  Submit Insights
                 </button>
               )}
             </div>

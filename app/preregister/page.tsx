@@ -3,7 +3,6 @@
 import type React from "react"
 import { useState } from "react"
 import { Sparkles, CheckCircle, AlertCircle } from "lucide-react"
-import { preregisterUser } from "@/app/firebase/services"
 
 interface FormData {
   firstName: string
@@ -67,11 +66,27 @@ export default function PreregisterPage() {
     setSubmitStatus("idle")
 
     try {
-      const result = await preregisterUser(
-        formData.firstName.trim(),
-        formData.lastName.trim(),
-        formData.email.trim().toLowerCase()
-      )
+      // Use the API endpoint which handles location detection
+      const response = await fetch('/api/preregister', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName: formData.firstName.trim(),
+          lastName: formData.lastName.trim(),
+          email: formData.email.trim().toLowerCase()
+        })
+      })
+
+      const data = await response.json()
+      
+      if (!response.ok) {
+        if (data.code === "USER_ALREADY_EXISTS") {
+          throw new Error("USER_ALREADY_EXISTS")
+        }
+        throw new Error(data.error || "Failed to preregister")
+      }
 
       setSubmitStatus("success")
       // Clear form after successful submission

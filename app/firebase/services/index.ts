@@ -5,7 +5,7 @@ export * from './firestoreService';
 export type { PreregisterUser, PreregisterUserWithId, SurveyData } from './firestoreService';
 
 // Re-export specific functions for convenience
-export { preregisterUser, submitSurvey } from './firestoreService';
+export { preregisterUser, submitSurvey, updateUserVisitedSite } from './firestoreService';
 
 // Re-export the service object
 export { firestoreService } from './firestoreService';

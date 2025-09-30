@@ -1,6 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Download, Star, Users, Zap, Plus, CreditCard, Smartphone, ClipboardList } from "lucide-react"
+import { Download, Plus, CreditCard, Smartphone, ClipboardList } from "lucide-react"
+import FeaturesCarousel from "@/components/features-carousel"
+import HowItWorksCarousel from "@/components/how-it-works-carousel"
 
 export default function HomePage() {
   return (
@@ -31,7 +33,7 @@ export default function HomePage() {
               className="bg-gradient-to-r from-pool-green to-pool-blue hover:from-pool-blue hover:to-pool-green text-white font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-full text-lg sm:text-xl transform hover:scale-105 active:scale-95 transition-all shadow-lg hover:shadow-xl flex items-center gap-2"
             >
               <ClipboardList size={24} />
-              Take Survey
+              Take the Quiz
             </Link>
           </div>
         </div>
@@ -45,39 +47,7 @@ export default function HomePage() {
             <span className="text-pool-navy leading-none">Is Pool?!</span>
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="text-center p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transform hover:scale-105 active:scale-98 transition-all border border-white/30 bg-white/15 backdrop-blur-2xl">
-              <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                <Zap size={40} className="text-pool-yellow" />
-              </div>
-              <h3 className="text-2xl font-bold text-pool-navy mb-4">Simple Splitting</h3>
-              <p className="text-pool-navy text-lg">
-                {
-                  "Easily split payments for daily lunches, group trips, or any activity with friends. No more complicated calculations!"
-                }
-              </p>
-            </div>
-
-            <div className="text-center p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transform hover:scale-105 active:scale-98 transition-all border border-white/30 bg-white/15 backdrop-blur-2xl">
-              <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                <Users size={40} className="text-pool-blue" />
-              </div>
-              <h3 className="text-2xl font-bold text-pool-navy mb-4">Virtual Card Access</h3>
-              <p className="text-pool-navy text-lg">
-                {"Everyone gets access to a virtual card for tap-to-pay. Group activities made simple!"}
-              </p>
-            </div>
-
-            <div className="text-center p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transform hover:scale-105 active:scale-98 transition-all border border-white/30 bg-white/15 backdrop-blur-2xl">
-              <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                <Star size={40} className="text-pool-pink" />
-              </div>
-              <h3 className="text-2xl font-bold text-pool-navy mb-4">No More IOUs</h3>
-              <p className="text-pool-navy text-lg">
-                {"No more waiting for friends to pay you back or keeping track of receipts. Deposit once and enjoy!"}
-              </p>
-            </div>
-          </div>
+          <FeaturesCarousel />
         </div>
       </section>
 
@@ -86,41 +56,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-pool-navy mb-8 sm:mb-12 md:mb-16">{"How It Works"}</h2>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white/20 backdrop-blur-sm rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl border border-white/30">
-              <div className="grid md:grid-cols-3 gap-8 text-center">
-                <div>
-                  <div className="bg-gradient-to-br from-pool-blue to-pool-purple rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                    <Plus size={40} className="text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-pool-navy mb-4">Create Your Pool</h3>
-                  <p className="text-pool-navy text-lg">
-                    {"Each friend deposits an equal amount into your shared pool"}
-                  </p>
-                </div>
-
-                <div>
-                  <div className="bg-gradient-to-br from-pool-pink to-pool-purple rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                    <CreditCard size={40} className="text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-pool-navy mb-4">Get Virtual Cards</h3>
-                  <p className="text-pool-navy text-lg">
-                    {"Everyone or select members get access to a virtual card for payments"}
-                  </p>
-                </div>
-
-                <div>
-                  <div className="bg-gradient-to-br from-pool-green to-coin-gold rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                    <Smartphone size={40} className="text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-pool-navy mb-4">Tap & Pay</h3>
-                  <p className="text-pool-navy text-lg">
-                    {"Pay for group activities with simple tap-to-pay. That's it!"}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <HowItWorksCarousel />
         </div>
       </section>
 
@@ -145,7 +81,7 @@ export default function HomePage() {
                 className="bg-gradient-to-r from-pool-green to-pool-blue hover:from-pool-blue hover:to-pool-green text-white font-bold py-4 px-8 sm:py-6 sm:px-12 rounded-full text-xl sm:text-2xl transform hover:scale-105 active:scale-95 transition-all shadow-lg hover:shadow-xl inline-flex items-center gap-3"
               >
                 <ClipboardList size={28} />
-                {"Take Survey"}
+                {"Take The Quiz"}
               </Link>
             </div>
           </div>

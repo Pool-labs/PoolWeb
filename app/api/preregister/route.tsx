@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
-import { submitSurvey } from "@/app/firebase/services"
+import { addPreregisterUser } from "@/app/firebase/services"
 
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json()
+    const { firstName, lastName, email } = data
 
     // Get location data
     let location = "Unknown"
@@ -22,33 +23,35 @@ export async function POST(request: NextRequest) {
       console.error("Error fetching location:", error)
     }
 
-    // Extract user info and survey data
-    const { firstName, lastName, email, ...surveyData } = data
-
     // Submit to Firebase with location
-    const result = await submitSurvey(firstName, lastName, email, surveyData, location)
+    const docId = await addPreregisterUser({
+      firstName,
+      lastName,
+      email,
+      location,
+      submittedAt: new Date().toISOString()
+    })
 
     return NextResponse.json(
       { 
-        message: result.isUpdate ? "Survey updated successfully" : "Survey submitted successfully",
-        docId: result.id,
-        isUpdate: result.isUpdate 
+        message: "Successfully preregistered!",
+        docId 
       },
       { status: 200 }
     )
   } catch (error: any) {
-    if (error.message === "SURVEY_ALREADY_COMPLETED") {
+    if (error.message === "USER_ALREADY_EXISTS") {
       return NextResponse.json(
         { 
-          error: "Survey already completed",
-          code: "SURVEY_ALREADY_COMPLETED" 
+          error: "This email is already registered.",
+          code: "USER_ALREADY_EXISTS" 
         },
-        { status: 409 } // Conflict status
+        { status: 409 }
       )
     }
     
     return NextResponse.json(
-      { error: "Failed to submit survey" },
+      { error: "Failed to preregister" },
       { status: 500 }
     )
   }

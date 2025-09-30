@@ -15,13 +15,16 @@ export default function Header() {
       <div className="container mx-auto px-4 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-center space-x-3 ">
-            <Image
-              src="/images/pool-logo-new.png"
-              alt="POOL Logo"
-              width={40}
-              height={40}
-              className="w-[32px] h-[32px] sm:w-[50px] sm:h-[50px]"
-            />
+            <Link
+              href="/"
+              className="text-pool-navy hover:text-pool-pink font-bold text-lg transition-colors hover:scale-110 transform"
+            ><Image
+            src="/images/pool-logo-new.png"
+            alt="POOL Logo"
+            width={40}
+            height={40}
+            className="w-[32px] h-[32px] sm:w-[50px] sm:h-[50px]"
+          /></Link>
             <span className="absolute left-1/2 -translate-x-1/2 md:static md:transform-none text-2xl sm:text-3xl font-bold bg-gradient-to-r from-red-600 via-orange-600 via-yellow-600 via-green-600 via-blue-600 to-purple-600 bg-[length:300%_100%] bg-clip-text text-transparent">
               POOL
             </span>
@@ -54,7 +57,7 @@ export default function Header() {
               href="/survey"
               className="text-pool-navy hover:text-pool-pink font-bold text-lg transition-colors hover:scale-110 transform"
             >
-              Survey
+              Insights Quiz
             </Link>
             <Link
               href="/faq"
@@ -92,7 +95,7 @@ export default function Header() {
                 Pre-Register
               </Link>
               <Link href="/survey" className="text-pool-navy hover:text-pool-pink font-bold text-lg" onClick={closeMenu}>
-                Survey
+                Insights Quiz
               </Link>
               <Link href="/faq" className="text-pool-navy hover:text-pool-pink font-bold text-lg" onClick={closeMenu}>
                 FAQ

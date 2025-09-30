@@ -31,6 +31,9 @@ export interface PreregisterUser {
   hasPreregistered?: boolean;
   hasCompletedSurvey?: boolean;
   surveyData?: SurveyData;
+  hasVisitedSite?: boolean;
+  location?: string;
+  submittedAt?: string;
 }
 
 export interface PreregisterUserWithId extends PreregisterUser {
@@ -59,6 +62,8 @@ export async function addPreregisterUser(userData: PreregisterUser): Promise<str
         firstName: userData.firstName,
         lastName: userData.lastName,
         hasPreregistered: true,
+        location: userData.location || existingUser.location,
+        submittedAt: userData.submittedAt || existingUser.submittedAt || new Date().toISOString(),
         // Keep their existing survey data and completion status
       });
       
@@ -73,6 +78,8 @@ export async function addPreregisterUser(userData: PreregisterUser): Promise<str
       hasPreregistered: userData.hasPreregistered ?? true,
       hasCompletedSurvey: userData.hasCompletedSurvey ?? false,
       surveyData: userData.surveyData ?? {},
+      location: userData.location || "Unknown",
+      submittedAt: userData.submittedAt || new Date().toISOString(),
     });
 
     return docRef.id;
@@ -192,6 +199,7 @@ export async function getPreregisterUserByEmail(email: string): Promise<Preregis
  * @param lastName - User's last name
  * @param email - User's email
  * @param surveyData - The survey responses
+ * @param location - User's location
  * @returns Promise with the document ID
  * @throws Error if survey already completed
  */
@@ -199,7 +207,8 @@ export async function submitSurvey(
   firstName: string,
   lastName: string,
   email: string,
-  surveyData: SurveyData
+  surveyData: SurveyData,
+  location?: string
 ): Promise<{ id: string; isUpdate?: boolean }> {
   try {
     // Check if user already exists
@@ -227,6 +236,8 @@ export async function submitSurvey(
         // Update name fields in case they've changed
         firstName: firstName,
         lastName: lastName,
+        location: location || existingUser.location || "Unknown",
+        submittedAt: new Date().toISOString()
       });
       
       return { id: existingUser.id, isUpdate: true };
@@ -242,6 +253,8 @@ export async function submitSurvey(
         hasPreregistered: false, // They didn't preregister, came directly to survey
         hasCompletedSurvey: allQuestionsAnswered,
         surveyData: surveyData,
+        location: location || "Unknown",
+        submittedAt: new Date().toISOString()
       };
       
       // Use addDoc directly to avoid the email check in addPreregisterUser
@@ -253,6 +266,30 @@ export async function submitSurvey(
       throw error;
     }
     throw new Error("Failed to submit survey");
+  }
+}
+
+/**
+ * Update user's hasVisitedSite status
+ * @param email - The user's email
+ * @param visited - Whether the user has visited the site
+ * @returns Promise with success status
+ */
+export async function updateUserVisitedSite(email: string, visited: boolean): Promise<boolean> {
+  try {
+    const existingUser = await getPreregisterUserByEmail(email);
+    
+    if (existingUser) {
+      await updateDoc(doc(db, "preregistered_users", existingUser.id), {
+        hasVisitedSite: visited
+      });
+      return true;
+    }
+    
+    return false;
+  } catch (error: any) {
+    console.error("Error updating hasVisitedSite:", error);
+    throw new Error("Failed to update site visit status");
   }
 }
 
