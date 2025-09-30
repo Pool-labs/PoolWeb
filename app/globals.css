@@ -113,7 +113,6 @@
     overscroll-behavior-y: none;
     -webkit-overflow-scrolling: touch;
     height: 100%;
-    background-color: white;
   }
   
   body {
@@ -123,7 +122,6 @@
     min-height: 100%;
     min-height: 100vh;
     min-height: -webkit-fill-available;
-    background-color: white;
     margin: 0;
     padding: 0;
   }

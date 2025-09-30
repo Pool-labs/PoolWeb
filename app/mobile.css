@@ -275,43 +275,16 @@
   html {
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    background-color: white;
     height: 100%;
   }
   
-  /* Prevent horizontal scroll and white space on quick scroll */
+  /* Prevent horizontal scroll on mobile */
   body {
     overflow-x: hidden;
-    background-color: white;
     min-height: 100%;
     min-height: 100vh;
     min-height: -webkit-fill-available;
     position: relative;
-  }
-  
-  /* Ensure background covers full viewport */
-  body::before {
-    content: '';
-    position: fixed;
-    top: -200%;
-    left: -50%;
-    right: -50%;
-    bottom: -200%;
-    background-color: white;
-    z-index: -2;
-  }
-  
-  /* Additional background layer */
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: white;
-    z-index: -3;
-    pointer-events: none;
   }
   
   .container {

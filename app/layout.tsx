@@ -51,13 +51,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <MobileInit />
-          {/* Fixed white background layer */}
-          <div className="fixed inset-0 bg-white" style={{ zIndex: -10 }} />
           <DecorativeBackground />
           <ScrollToTop />
-          <div className="relative z-10 bg-white min-h-screen">
+          <div className="relative z-10">
             <Header />
-            <main className="bg-white">{children}</main>
+            <main>{children}</main>
             <Footer />
           </div>
         </ThemeProvider>
