@@ -3,6 +3,7 @@
 import type React from "react"
 import { useState } from "react"
 import { Sparkles, CheckCircle, AlertCircle } from "lucide-react"
+import { detectClientLocation } from "@/lib/location-utils"
 
 interface FormData {
   firstName: string
@@ -75,7 +76,8 @@ export default function PreregisterPage() {
         body: JSON.stringify({
           firstName: formData.firstName.trim(),
           lastName: formData.lastName.trim(),
-          email: formData.email.trim().toLowerCase()
+          email: formData.email.trim().toLowerCase(),
+          clientLocation: detectClientLocation()
         })
       })
 

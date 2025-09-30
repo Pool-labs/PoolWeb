@@ -107,6 +107,20 @@
     -moz-osx-font-smoothing: grayscale;
   }
   
+  /* Fix white space appearing on quick scroll */
+  html, body {
+    overflow-x: hidden;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  body {
+    position: relative;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    background-color: white;
+  }
+  
   /* Disable animations on low-end devices */
   @media (prefers-reduced-motion: reduce) {
     *,

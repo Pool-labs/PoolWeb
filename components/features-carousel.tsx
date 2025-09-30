@@ -34,7 +34,7 @@ export default function FeaturesCarousel() {
       dragFree: false,
       loop: true
     },
-    [Autoplay({ delay: 4000, stopOnInteraction: true })]
+    [Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true })]
   )
   const [selectedIndex, setSelectedIndex] = useState(0)
 
@@ -70,8 +70,8 @@ export default function FeaturesCarousel() {
 
       {/* Mobile Carousel Layout */}
       <div className="md:hidden relative">
-        <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex">
+        <div className="overflow-hidden" ref={emblaRef} style={{ touchAction: 'pan-y pinch-zoom' }}>
+          <div className="flex" style={{ backfaceVisibility: 'hidden' }}>
             {features.map((feature, index) => (
               <div key={index} className="flex-[0_0_100%] min-w-0">
                 <div className="text-center p-6 rounded-3xl shadow-xl border border-white/30 bg-white/15 backdrop-blur-2xl mx-4 h-[320px] flex flex-col justify-center">

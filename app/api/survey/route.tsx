@@ -23,10 +23,13 @@ export async function POST(request: NextRequest) {
     }
 
     // Extract user info and survey data
-    const { firstName, lastName, email, ...surveyData } = data
+    const { firstName, lastName, email, clientLocation, hasVisitedSite, ...surveyData } = data
 
-    // Submit to Firebase with location
-    const result = await submitSurvey(firstName, lastName, email, surveyData, location)
+    // Use server-detected location if available, otherwise use client location
+    const finalLocation = location !== "Unknown" ? location : (clientLocation || "Unknown")
+
+    // Submit to Firebase with location and hasVisitedSite
+    const result = await submitSurvey(firstName, lastName, email, surveyData, finalLocation, hasVisitedSite)
 
     return NextResponse.json(
       { 

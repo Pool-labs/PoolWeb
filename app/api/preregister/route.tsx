@@ -4,7 +4,7 @@ import { addPreregisterUser } from "@/app/firebase/services"
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json()
-    const { firstName, lastName, email } = data
+    const { firstName, lastName, email, clientLocation } = data
 
     // Get location data
     let location = "Unknown"
@@ -23,12 +23,15 @@ export async function POST(request: NextRequest) {
       console.error("Error fetching location:", error)
     }
 
+    // Use server-detected location if available, otherwise use client location
+    const finalLocation = location !== "Unknown" ? location : (clientLocation || "Unknown")
+
     // Submit to Firebase with location
     const docId = await addPreregisterUser({
       firstName,
       lastName,
       email,
-      location,
+      location: finalLocation,
       submittedAt: new Date().toISOString()
     })
 

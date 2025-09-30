@@ -57,7 +57,7 @@ export default function Header() {
               href="/survey"
               className="text-pool-navy hover:text-pool-pink font-bold text-lg transition-colors hover:scale-110 transform"
             >
-              Insights Quiz
+              Questionnaire
             </Link>
             <Link
               href="/faq"
@@ -95,7 +95,7 @@ export default function Header() {
                 Pre-Register
               </Link>
               <Link href="/survey" className="text-pool-navy hover:text-pool-pink font-bold text-lg" onClick={closeMenu}>
-                Insights Quiz
+              Questionnaire
               </Link>
               <Link href="/faq" className="text-pool-navy hover:text-pool-pink font-bold text-lg" onClick={closeMenu}>
                 FAQ

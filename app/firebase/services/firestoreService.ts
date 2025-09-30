@@ -208,7 +208,8 @@ export async function submitSurvey(
   lastName: string,
   email: string,
   surveyData: SurveyData,
-  location?: string
+  location?: string,
+  hasVisitedSite?: boolean
 ): Promise<{ id: string; isUpdate?: boolean }> {
   try {
     // Check if user already exists
@@ -237,7 +238,8 @@ export async function submitSurvey(
         firstName: firstName,
         lastName: lastName,
         location: location || existingUser.location || "Unknown",
-        submittedAt: new Date().toISOString()
+        submittedAt: new Date().toISOString(),
+        ...(hasVisitedSite !== undefined && { hasVisitedSite })
       });
       
       return { id: existingUser.id, isUpdate: true };
@@ -254,7 +256,8 @@ export async function submitSurvey(
         hasCompletedSurvey: allQuestionsAnswered,
         surveyData: surveyData,
         location: location || "Unknown",
-        submittedAt: new Date().toISOString()
+        submittedAt: new Date().toISOString(),
+        ...(hasVisitedSite !== undefined && { hasVisitedSite })
       };
       
       // Use addDoc directly to avoid the email check in addPreregisterUser

@@ -49,7 +49,7 @@ export default function PrivacyPolicy() {
 
         <h3 className="text-xl font-semibold mt-6 mb-2">Communication Data:</h3>
         <ul>
-          <li>Information from customer support chats, feedback forms, or insights you submit.</li>
+          <li>Information from customer support chats, feedback forms, or questionnaire you submit.</li>
         </ul>
 
         <h2 className="text-2xl font-bold mt-8 mb-4">2. How We Use Your Information</h2>

@@ -3,7 +3,8 @@
 import type React from "react"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { Gift, ChevronRight, CheckSquare, Square, AlertCircle } from "lucide-react"
+import { Gift, ChevronRight, CheckSquare, Square, AlertCircle, Globe } from "lucide-react"
+import { detectClientLocation } from "@/lib/location-utils"
 
 type FormData = {
   hangoutFrequency: string
@@ -121,6 +122,30 @@ export default function SurveyPage() {
   const [showProgress, setShowProgress] = useState(false)
   const [isInitialized, setIsInitialized] = useState(false)
   const [showDuplicateMessage, setShowDuplicateMessage] = useState(false)
+  const [hasVisitedSite, setHasVisitedSite] = useState<boolean | null>(() => {
+    // Load from localStorage on initial mount
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('survey_site_visit')
+      if (saved === 'true') return true
+      if (saved === 'false') return false
+    }
+    return null
+  })
+  const [showSiteVisitModal, setShowSiteVisitModal] = useState(false)
+  
+  // Debug state changes
+  useEffect(() => {
+    console.log('showSiteVisitModal changed to:', showSiteVisitModal)
+  }, [showSiteVisitModal])
+  
+  // Test button to manually trigger modal
+  useEffect(() => {
+    // Add a global function for testing
+    (window as any).testModal = () => {
+      console.log('Manually triggering modal')
+      setShowSiteVisitModal(true)
+    }
+  }, [])
 
   const totalSteps = 5
   const totalQuestions = 11
@@ -304,6 +329,8 @@ export default function SurveyPage() {
     else if (!/\S+@\S+\.\S+/.test(formData.email)) errors.email = "Please enter a valid email"
     
     setContactErrors(errors)
+    
+    
     return Object.keys(errors).length === 0
   }
 
@@ -385,6 +412,25 @@ export default function SurveyPage() {
     e.preventDefault()
     if (!validateContactInfo()) return
 
+    // Check if site visit has NOT been answered yet
+    const savedVisit = localStorage.getItem('survey_site_visit')
+    console.log('Checking site visit:', { savedVisit, hasVisitedSite })
+    
+    if (!savedVisit && hasVisitedSite === null) {
+      console.log('Showing site visit modal')
+      setShowSiteVisitModal(true)
+      // Force a re-render
+      setTimeout(() => {
+        console.log('Modal should be visible now')
+      }, 100)
+      return
+    }
+
+    // Proceed with submission
+    await submitForm()
+  }
+
+  const submitForm = async () => {
     setIsSubmitting(true)
     try {
       const response = await fetch("/api/survey", {
@@ -392,7 +438,11 @@ export default function SurveyPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          hasVisitedSite,
+          clientLocation: detectClientLocation()
+        }),
       })
 
       if (!response.ok) {
@@ -411,6 +461,7 @@ export default function SurveyPage() {
       if (isAllQuestionsAnswered()) {
         // All questions answered, clearing saved progress
         localStorage.removeItem(STORAGE_KEY)
+        localStorage.removeItem('survey_site_visit')
       } else {
         // Partial submission, keeping saved progress for future completion
       }
@@ -438,7 +489,7 @@ export default function SurveyPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
             <h2 className="text-4xl font-bold text-pool-navy mb-8 text-center text-shadow">
-              Insights Already Completed
+            Questionnaire Already Completed
             </h2>
             
             <div className="bg-white/20 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/30">
@@ -446,7 +497,7 @@ export default function SurveyPage() {
                 <AlertCircle className="w-8 h-8 text-yellow-600 flex-shrink-0" />
                 <div>
                   <p className="text-lg font-bold text-yellow-800">
-                    You have already completed the insights.
+                    You have already completed the questionnaire.
                   </p>
                   <p className="text-yellow-700 mt-1">
                     Thank you for your previous submission! We appreciate your feedback.
@@ -471,6 +522,72 @@ export default function SurveyPage() {
 
   if (showContactForm) {
     return (
+      <>
+      {/* Site Visit Modal */}
+      {showSiteVisitModal && (
+        <div 
+          className="fixed inset-0 flex items-center justify-center p-4 bg-black bg-opacity-50" 
+          style={{ 
+            zIndex: 9999,
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)'
+          }}
+          onClick={() => setShowSiteVisitModal(false)}
+        >
+          <div 
+            className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl" 
+            style={{ 
+              backgroundColor: 'white',
+              position: 'relative',
+              zIndex: 10000
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="text-center">
+              <div className="flex items-center justify-center mb-4">
+                <Globe className="w-12 h-12 text-pool-navy" />
+              </div>
+              <h3 className="text-2xl font-bold text-pool-navy mb-4">
+                One Quick Question!
+              </h3>
+              <p className="text-lg text-pool-navy mb-6">
+                Have you explored our site before taking this questionnaire?
+              </p>
+              <div className="flex gap-4 justify-center">
+                <button
+                  type="button"
+                  onClick={async () => {
+                    setHasVisitedSite(true)
+                    localStorage.setItem('survey_site_visit', 'true')
+                    setShowSiteVisitModal(false)
+                    await submitForm()
+                  }}
+                  className="px-12 py-3 rounded-full font-medium bg-pool-green text-white hover:bg-pool-green/90 transition-all transform hover:scale-105"
+                >
+                  Yes
+                </button>
+                <button
+                  type="button"
+                  onClick={async () => {
+                    setHasVisitedSite(false)
+                    localStorage.setItem('survey_site_visit', 'false')
+                    setShowSiteVisitModal(false)
+                    await submitForm()
+                  }}
+                  className="px-12 py-3 rounded-full font-medium bg-pool-pink text-white hover:bg-pool-pink/90 transition-all transform hover:scale-105"
+                >
+                  No
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      
       <div className="min-h-screen py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
@@ -596,7 +713,7 @@ export default function SurveyPage() {
                         Submitting...
                       </div>
                     ) : (
-                      isPartialSubmission ? "Submit Insights" : "Submit Insights"
+                      isPartialSubmission ? "Submit Questionnaire" : "Submit Questionnaire"
                     )}
                   </button>
                 </div>
@@ -605,6 +722,7 @@ export default function SurveyPage() {
           </div>
         </div>
       </div>
+      </>
     )
   }
 
@@ -962,11 +1080,77 @@ export default function SurveyPage() {
   }
 
   return (
+    <>
+    {/* Site Visit Modal - Moved to top level */}
+    {showSiteVisitModal && (
+      <div 
+        className="fixed inset-0 flex items-center justify-center p-4 bg-black bg-opacity-50" 
+        style={{ 
+          zIndex: 9999,
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)'
+        }}
+        onClick={() => setShowSiteVisitModal(false)}
+      >
+        <div 
+          className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl" 
+          style={{ 
+            backgroundColor: 'white',
+            position: 'relative',
+            zIndex: 10000
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="text-center">
+            <div className="flex items-center justify-center mb-4">
+              <Globe className="w-12 h-12 text-pool-navy" />
+            </div>
+            <h3 className="text-2xl font-bold text-pool-navy mb-4">
+              One Quick Question!
+            </h3>
+            <p className="text-lg text-pool-navy mb-6">
+              Have you explored our site before taking this questionnaire?
+            </p>
+            <div className="flex gap-4 justify-center">
+              <button
+                type="button"
+                onClick={async () => {
+                  setHasVisitedSite(true)
+                  localStorage.setItem('survey_site_visit', 'true')
+                  setShowSiteVisitModal(false)
+                  await submitForm()
+                }}
+                className="px-12 py-3 rounded-full font-medium bg-pool-green text-white hover:bg-pool-green/90 transition-all transform hover:scale-105"
+              >
+                Yes
+              </button>
+              <button
+                type="button"
+                onClick={async () => {
+                  setHasVisitedSite(false)
+                  localStorage.setItem('survey_site_visit', 'false')
+                  setShowSiteVisitModal(false)
+                  await submitForm()
+                }}
+                className="px-12 py-3 rounded-full font-medium bg-pool-pink text-white hover:bg-pool-pink/90 transition-all transform hover:scale-105"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+
     <div className="min-h-screen py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-5xl font-bold text-pool-navy mb-8 text-center text-shadow">
-            Insights Quiz
+          Questionnaire
           </h1>
 
           {/* VIP access banner */}
@@ -1121,7 +1305,7 @@ export default function SurveyPage() {
                 <button
                   type="button"
                   onClick={handlePrevious}
-                  className="bg-gray-300 hover:bg-gray-400 text-pool-navy font-bold py-3 px-6 rounded-full transition-all"
+                  className="bg-gray-300 hover:bg-gray-400 text-pool-navy font-bold py-3 px-6 mr-3 rounded-full transition-all text-center flex items-center justify-center"
                 >
                   Previous
                 </button>
@@ -1141,7 +1325,7 @@ export default function SurveyPage() {
                   type="submit"
                   className="ml-auto bg-gradient-to-r from-pool-pink to-pool-purple hover:from-pool-purple hover:to-pool-pink text-white font-bold py-3 px-8 rounded-full transform hover:scale-105 transition-all shadow-lg hover:shadow-xl"
                 >
-                  Submit Insights
+                  Submit Questionnaire
                 </button>
               )}
             </div>
@@ -1149,5 +1333,6 @@ export default function SurveyPage() {
         </div>
       </div>
     </div>
+  </>
   )
 }
