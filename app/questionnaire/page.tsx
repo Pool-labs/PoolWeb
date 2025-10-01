@@ -122,30 +122,9 @@ export default function SurveyPage() {
   const [showProgress, setShowProgress] = useState(false)
   const [isInitialized, setIsInitialized] = useState(false)
   const [showDuplicateMessage, setShowDuplicateMessage] = useState(false)
-  const [hasVisitedSite, setHasVisitedSite] = useState<boolean | null>(() => {
-    // Load from localStorage on initial mount
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('survey_site_visit')
-      if (saved === 'true') return true
-      if (saved === 'false') return false
-    }
-    return null
-  })
+  const [hasVisitedSite, setHasVisitedSite] = useState<boolean | null>(null)
   const [showSiteVisitModal, setShowSiteVisitModal] = useState(false)
-  
-  // Debug state changes
-  useEffect(() => {
-    console.log('showSiteVisitModal changed to:', showSiteVisitModal)
-  }, [showSiteVisitModal])
-  
-  // Test button to manually trigger modal
-  useEffect(() => {
-    // Add a global function for testing
-    (window as any).testModal = () => {
-      console.log('Manually triggering modal')
-      setShowSiteVisitModal(true)
-    }
-  }, [])
+  const [userEmail, setUserEmail] = useState<string>("")
 
   const totalSteps = 5
   const totalQuestions = 11
@@ -412,22 +391,46 @@ export default function SurveyPage() {
     e.preventDefault()
     if (!validateContactInfo()) return
 
-    // Check if site visit has NOT been answered yet
-    const savedVisit = localStorage.getItem('survey_site_visit')
-    console.log('Checking site visit:', { savedVisit, hasVisitedSite })
-    
-    if (!savedVisit && hasVisitedSite === null) {
-      console.log('Showing site visit modal')
-      setShowSiteVisitModal(true)
-      // Force a re-render
-      setTimeout(() => {
-        console.log('Modal should be visible now')
-      }, 100)
-      return
-    }
+    // Store email for later use
+    setUserEmail(formData.email)
 
-    // Proceed with submission
+    // Proceed with submission - we'll check hasVisitedSite in Firebase after submission
     await submitForm()
+  }
+
+  const handleSiteVisitUpdate = async (visited: boolean) => {
+    try {
+      // Update hasVisitedSite in Firebase
+      const response = await fetch("/api/update-site-visit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: userEmail || formData.email,
+          hasVisitedSite: visited
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to update site visit status")
+      }
+
+      // Close modal and navigate to confirmation
+      setShowSiteVisitModal(false)
+      
+      const params = new URLSearchParams({
+        complete: String(!isPartialSubmission),
+        updated: 'true',
+        firstName: formData.firstName || '',
+        lastName: formData.lastName || '',
+        email: formData.email || ''
+      })
+      router.push(`/questionnaire/confirmation?${params}`)
+    } catch (error) {
+      console.error("Error updating site visit:", error)
+      alert("An error occurred. Please try again.")
+    }
   }
 
   const submitForm = async () => {
@@ -440,7 +443,6 @@ export default function SurveyPage() {
         },
         body: JSON.stringify({
           ...formData,
-          hasVisitedSite,
           clientLocation: detectClientLocation()
         }),
       })
@@ -457,16 +459,25 @@ export default function SurveyPage() {
 
       const result = await response.json()
       
+      console.log("Survey submission response:", result)
+      console.log("hasVisitedSite from response:", result.hasVisitedSite)
+      
       // Clear saved progress if survey is now 100% complete
       if (isAllQuestionsAnswered()) {
         // All questions answered, clearing saved progress
         localStorage.removeItem(STORAGE_KEY)
-        localStorage.removeItem('survey_site_visit')
-      } else {
-        // Partial submission, keeping saved progress for future completion
       }
       
-      // Redirect to confirmation page with completion status and update flag
+      // Check if we need to show the hasVisitedSite popup based on the response
+      if (result.hasVisitedSite === null || result.hasVisitedSite === undefined) {
+        // Show the popup instead of navigating immediately
+        console.log("Showing site visit modal because hasVisitedSite is null/undefined")
+        setShowSiteVisitModal(true)
+        setIsSubmitting(false)
+        return
+      }
+      
+      // Navigate to confirmation page if hasVisitedSite is already set
       const params = new URLSearchParams({
         complete: String(!isPartialSubmission),
         updated: String(result.isUpdate || false),
@@ -476,7 +487,7 @@ export default function SurveyPage() {
       })
       router.push(`/questionnaire/confirmation?${params}`)
     } catch (error) {
-      // Survey submission error
+      console.error("Survey submission error:", error)
       alert("An error occurred while submitting the survey. Please try again.")
     } finally {
       setIsSubmitting(false)
@@ -560,24 +571,14 @@ export default function SurveyPage() {
               <div className="flex gap-4 justify-center">
                 <button
                   type="button"
-                  onClick={async () => {
-                    setHasVisitedSite(true)
-                    localStorage.setItem('survey_site_visit', 'true')
-                    setShowSiteVisitModal(false)
-                    await submitForm()
-                  }}
+                  onClick={() => handleSiteVisitUpdate(true)}
                   className="px-12 py-3 rounded-full font-medium bg-pool-green text-white hover:bg-pool-green/90 transition-all transform hover:scale-105"
                 >
                   Yes
                 </button>
                 <button
                   type="button"
-                  onClick={async () => {
-                    setHasVisitedSite(false)
-                    localStorage.setItem('survey_site_visit', 'false')
-                    setShowSiteVisitModal(false)
-                    await submitForm()
-                  }}
+                  onClick={() => handleSiteVisitUpdate(false)}
                   className="px-12 py-3 rounded-full font-medium bg-pool-pink text-white hover:bg-pool-pink/90 transition-all transform hover:scale-105"
                 >
                   No
@@ -1118,24 +1119,14 @@ export default function SurveyPage() {
             <div className="flex gap-4 justify-center">
               <button
                 type="button"
-                onClick={async () => {
-                  setHasVisitedSite(true)
-                  localStorage.setItem('survey_site_visit', 'true')
-                  setShowSiteVisitModal(false)
-                  await submitForm()
-                }}
+                onClick={() => handleSiteVisitUpdate(true)}
                 className="px-12 py-3 rounded-full font-medium bg-pool-green text-white hover:bg-pool-green/90 transition-all transform hover:scale-105"
               >
                 Yes
               </button>
               <button
                 type="button"
-                onClick={async () => {
-                  setHasVisitedSite(false)
-                  localStorage.setItem('survey_site_visit', 'false')
-                  setShowSiteVisitModal(false)
-                  await submitForm()
-                }}
+                onClick={() => handleSiteVisitUpdate(false)}
                 className="px-12 py-3 rounded-full font-medium bg-pool-pink text-white hover:bg-pool-pink/90 transition-all transform hover:scale-105"
               >
                 No

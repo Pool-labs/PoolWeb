@@ -231,16 +231,22 @@ export async function submitSurvey(
         ...surveyData
       };
       
-      await updateDoc(doc(db, "preregistered_users", existingUser.id), {
+      const updateData: any = {
         surveyData: updatedSurveyData,
         hasCompletedSurvey: allQuestionsAnswered,
         // Update name fields in case they've changed
         firstName: firstName,
         lastName: lastName,
         location: location || existingUser.location || "Unknown",
-        submittedAt: new Date().toISOString(),
-        ...(hasVisitedSite !== undefined && { hasVisitedSite })
-      });
+        submittedAt: new Date().toISOString()
+      };
+      
+      // Only update hasVisitedSite if it's not already set
+      if (hasVisitedSite !== undefined && existingUser.hasVisitedSite === undefined) {
+        updateData.hasVisitedSite = hasVisitedSite;
+      }
+      
+      await updateDoc(doc(db, "preregistered_users", existingUser.id), updateData);
       
       return { id: existingUser.id, isUpdate: true };
     } else {
@@ -256,9 +262,13 @@ export async function submitSurvey(
         hasCompletedSurvey: allQuestionsAnswered,
         surveyData: surveyData,
         location: location || "Unknown",
-        submittedAt: new Date().toISOString(),
-        ...(hasVisitedSite !== undefined && { hasVisitedSite })
+        submittedAt: new Date().toISOString()
       };
+      
+      // Only set hasVisitedSite if it's explicitly provided
+      if (hasVisitedSite !== undefined) {
+        newUser.hasVisitedSite = hasVisitedSite;
+      }
       
       // Use addDoc directly to avoid the email check in addPreregisterUser
       const docRef = await addDoc(collection(db, "preregistered_users"), newUser);

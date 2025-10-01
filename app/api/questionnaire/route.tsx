@@ -31,11 +31,16 @@ export async function POST(request: NextRequest) {
     // Submit to Firebase with location and hasVisitedSite
     const result = await submitSurvey(firstName, lastName, email, surveyData, finalLocation, hasVisitedSite)
 
+    // Get the updated user data to return in response
+    const { getPreregisterUserByEmail } = await import("@/app/firebase/services")
+    const updatedUser = await getPreregisterUserByEmail(email)
+
     return NextResponse.json(
       { 
         message: result.isUpdate ? "Survey updated successfully" : "Survey submitted successfully",
         docId: result.id,
-        isUpdate: result.isUpdate 
+        isUpdate: result.isUpdate,
+        hasVisitedSite: updatedUser?.hasVisitedSite
       },
       { status: 200 }
     )
