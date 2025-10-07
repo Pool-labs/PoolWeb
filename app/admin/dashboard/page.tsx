@@ -81,6 +81,35 @@ export default function AdminDashboardPage() {
     }
   };
 
+  const countAnsweredQuestions = (surveyData: any): number => {
+    if (!surveyData) return 0;
+    
+    // Only count the main 11 questions from the questionnaire
+    const questions = [
+      'hangoutFrequency',
+      'avgSpend',
+      'splitWith',
+      'splitTypes',
+      'splitFrequency',
+      'iouFrequency',
+      'causesTension',
+      'currentTool',
+      'tryNewApp',
+      'valuableFeatures',
+      'concerns'
+    ];
+    
+    let count = 0;
+    questions.forEach(q => {
+      const value = surveyData[q];
+      if (value && (Array.isArray(value) ? value.length > 0 : value.trim !== undefined ? value.trim() !== '' : true)) {
+        count++;
+      }
+    });
+    
+    return count;
+  };
+
   const exportToCSV = () => {
     const headers = [
       'Name',
@@ -88,6 +117,7 @@ export default function AdminDashboardPage() {
       'Country',
       'Registered',
       'Survey Completed',
+      'Questions Answered',
       'Visited Site',
       'Submitted At',
       'Hangout Frequency',
@@ -115,6 +145,7 @@ export default function AdminDashboardPage() {
         user.location ? user.location.split(',').pop()?.trim() || 'Unknown' : 'Unknown',
         user.hasPreregistered ? 'Yes' : 'No',
         user.hasCompletedSurvey ? 'Yes' : 'No',
+        `${countAnsweredQuestions(user.surveyData)}/11`,
         user.hasVisitedSite ? 'Yes' : 'No',
         user.submittedAt ? format(new Date(user.submittedAt), 'yyyy-MM-dd HH:mm') : '',
         survey.hangoutFrequency || '',
@@ -155,6 +186,12 @@ export default function AdminDashboardPage() {
     surveysCompleted: users.filter(u => u.hasCompletedSurvey).length,
     visitedSite: users.filter(u => u.hasVisitedSite).length,
   };
+  
+  // Calculate average questions answered
+  const usersWithSurvey = users.filter(u => u.surveyData);
+  const avgQuestions = usersWithSurvey.length > 0 
+    ? (usersWithSurvey.reduce((sum, user) => sum + countAnsweredQuestions(user.surveyData), 0) / usersWithSurvey.length).toFixed(1)
+    : '0';
 
   if (loading) {
     return (
@@ -271,6 +308,7 @@ export default function AdminDashboardPage() {
                     <TableHead>Email</TableHead>
                     <TableHead>Country</TableHead>
                     <TableHead>Status</TableHead>
+                    <TableHead>Questions</TableHead>
                     <TableHead>Submitted</TableHead>
                     <TableHead>Actions</TableHead>
                   </TableRow>
@@ -303,6 +341,11 @@ export default function AdminDashboardPage() {
                             </Badge>
                           )}
                         </div>
+                      </TableCell>
+                      <TableCell>
+                        <span className="text-sm">
+                          {countAnsweredQuestions(user.surveyData)}/11
+                        </span>
                       </TableCell>
                       <TableCell>
                         {user.submittedAt && (
@@ -362,10 +405,12 @@ export default function AdminDashboardPage() {
                     )}
                   </div>
                   
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs text-muted-foreground">
-                      {user.submittedAt && format(new Date(user.submittedAt), 'MMM d, yyyy')}
-                    </span>
+                  <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <span>Questions: {countAnsweredQuestions(user.surveyData)}/11</span>
+                    <span>{user.submittedAt && format(new Date(user.submittedAt), 'MMM d, yyyy')}</span>
+                  </div>
+                  
+                  <div className="flex justify-end">
                     <Button
                       variant="ghost"
                       size="sm"
